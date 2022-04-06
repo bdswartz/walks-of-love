@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
-const { User, Post, Comment } = require('../../models');
+const { Walker } = require('../../models');
 
-//  route coming into file is /api/users
+//  route coming into file is /api/walker
 
 // GET all walkers
 router.get('/', (req, res) => {
@@ -21,12 +21,12 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Walker.findOne({
       attributes: { exclude: ['password'] },
-      include: [
-        {
-          model: Job,
-          attributes: ['id', 'title', ...]
-        }
-      ],
+      // include: [
+      //   {
+      //     model: Job,
+      //     attributes: ['id', 'title', ...]
+      //   }
+      // ],
       where: {
         id: req.params.id
       }
@@ -44,9 +44,9 @@ router.get('/:id', (req, res) => {
       });
   });
 
-// POST /api/users  **** checked (but not session storage)
+// POST /api/walker 
 router.post('/', (req, res) => {
-    // expects {email: 'xxxxxx', password: 'xxxxx'}
+    // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
     Walker.create(req.body)
     .then(dbUserData => {
       req.session.save(() => {

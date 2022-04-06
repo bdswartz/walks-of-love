@@ -1,10 +1,10 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
-const { User, Post, Comment } = require('../../models');
+const { Owner } = require('../../models');
 
 //  route coming into file is /api/users
 
-// GET all users
+// GET all owners
 router.get('/', (req, res) => {
     // Access the owner model and run .findAll() method)
    Owner.findAll({
