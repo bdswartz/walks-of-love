@@ -1,11 +1,10 @@
 const router = require('express').Router();
 
-const userRoutes = require('./user-routes.js');
-const postRoutes = require('./post-routes.js');
-const commentRoutes = require('./comment-routes.js');
+//  base route for this file is /api (controllers/index)
+const ownerRoutes = require('./owner-routes.js');
+const walkerRoutes = require('./walker-routes.js');
 
-router.use('/users', userRoutes);
-router.use('/posts', postRoutes);
-router.use('/comments', commentRoutes);
+router.use('/owner', ownerRoutes);
+router.use('/walker', walkerRoutes);
 
 module.exports = router;
