@@ -1,7 +1,6 @@
-// Master controller file to further route to more specialized controller files
+// Master controller file to further route (from server.js) to more specialized controller files
 const router = require('express').Router();
 const htmlHomeRoutes = require('./html-home-routes.js');
-const htmlDashboardRoutes = require('./html-dashboard-routes.js');
 const apiRoutes = require('./api');
 
 router.use('/', htmlHomeRoutes);
