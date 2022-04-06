@@ -28,6 +28,7 @@ body {
   font-family: 'Old Standard TT', serif;
   font-weight: 600 !important;
   font-size: 3.6rem;
+  line-height: 1;
 }
 
 .modal {
@@ -57,14 +58,19 @@ body {
  height: 65px;
 }
 
-.container {
+.container1 {
   padding-bottom: 2%;
   margin-top: 7%;
-  margin-left: 54%;
-  height:100%;
-  border-radius: .25rem;
+  margin-left: 47%;
+  height: 100%;
+  border-radius: 0.25rem;
   margin-bottom: 2%;
-  width: 600px;
+  width: 662px;
+}
+
+#section-form {
+  padding: 9%;
+  padding-top: 2%;
 }
 
 [data-useremail="true"] {
@@ -84,6 +90,10 @@ hr {
 
 .list-group-item {
   line-height: 2.5;
+}
+
+.form-container {
+  padding: 5%;
 }
 
 .card-body {
