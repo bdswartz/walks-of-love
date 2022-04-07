@@ -21,9 +21,13 @@ Pets.init(
          type: DataTypes.INTEGER,
          allowNull: false
       },
+      pet_type: {
+          type: DataTypes.STRING,
+          allowNull: false
+      },
       description: {
          type: DataTypes.STRING,
-         allowNull: false,
+         allowNull: false
       }
     },
     {
