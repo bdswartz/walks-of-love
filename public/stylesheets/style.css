@@ -102,7 +102,7 @@ hr {
 
 .dashboard-container {
   width: 100vw;
-  height: 100vh;
+  height: 300vh;
   background-color: #FAF9F5;
 }
 
@@ -119,4 +119,18 @@ hr {
   font-weight: 600 !important;
   padding-top: 2%;
   color: #444;
+}
+
+#jobs-container h1{
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600 !important;
+  padding-top: 2%;
+  color: #444;
+}
+ #jobs-container {
+  color: #444;
+ }
+
+#about-pet-input {
+  width: 100%;
 }
