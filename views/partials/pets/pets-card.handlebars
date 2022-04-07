@@ -1,0 +1,16 @@
+{{!-- chance {{each this}} to {{each pet}} --}}
+{{!-- input 
+{{pet.petname}}
+{{pet.type}}
+{{pet.about}}
+ --}}
+
+{{#each this}}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">petname</h5>
+        <h6 class="card-subtitle mb-2 text-muted">pettype</h6>
+        <p class="card-text">aboutpet</p>
+    </div>
+</div>
+{{/each}}
