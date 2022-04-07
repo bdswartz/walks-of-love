@@ -30,7 +30,7 @@ Job.init(
         },
 
         timeframe: {
-            type: DataTypes.INTEGER,
+            type:DataTypes.DATE,
             allowNull: false
 
         },
