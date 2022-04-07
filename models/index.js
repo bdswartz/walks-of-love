@@ -1,10 +1,10 @@
 const Owner = require('./owner');
 const Walker = require('./walker');
 const Pets = require('./pets');
-const Job = require('./Job');
+const Job = require('./job');
 
 Owner.hasMany(Pets, {
-    foreignKey: 'animal_id'
+    foreignKey: 'owner_id'
   });
   
   Pets.belongsTo(Owner, {
@@ -28,4 +28,14 @@ Owner.hasMany(Pets, {
     foreignKey: 'owner_id'
   });
 
+  
+  // Pets.hasMany(Job, {
+  //   through: Vote,
+  //   as: 'voted_posts',
+  //   foreignKey: 'post_id'
+  // })
+
+  // Job.hasMany(Pets, {
+
+  // })
 module.exports = { Walker, Owner, Pets, Job };
