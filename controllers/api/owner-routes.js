@@ -4,7 +4,7 @@ const { Owner } = require('../../models');
 
 //  route coming into file is /apis/owner
 
-// GET all owners
+// GET all owners  ****tested
 router.get('/', (req, res) => {
     // Access the owner model and run .findAll() method)
    Owner.findAll({
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       });
   });
 
-// GET one owner
+// GET one owner   ****tested
 router.get('/:id', (req, res) => {
     Owner.findOne({
       attributes: { exclude: ['password'] },
@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-// POST /api/owner
+// POST /api/owner ****tested
 router.post('/', (req, res) => {
     // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
     Owner.create(req.body)
@@ -103,7 +103,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// PUT /api/owner/1
+// PUT /api/owner/1 ****tested
 router.put('/:id', (req, res) => {
    
     Owner.update(req.body, {
@@ -125,7 +125,7 @@ router.put('/:id', (req, res) => {
       });
   });
 
-// DELETE /api/owner/1
+// DELETE /api/owner/1  *****tested
 router.delete('/:id', (req, res) => {
     Owner.destroy({
       where: {

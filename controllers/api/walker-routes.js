@@ -4,13 +4,13 @@ const { Walker } = require('../../models');
 
 //  route coming into file is /api/walker
 
-// GET all walkers
+// GET all walkers   *****tested
 router.get('/', (req, res) => {
     // Access our Walker model and run .findAll() method)
     Walker.findAll({
       attributes: { exclude: ['password'] }
     })
-      .then(dbUserData => res.json(dbUserData))
+      .then(dbWalkerData => res.json(dbWalkerData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -31,12 +31,12 @@ router.get('/:id', (req, res) => {
         id: req.params.id
       }
     })
-      .then(dbUserData => {
-        if (!dbUserData) {
+      .then(dbWalkerData => {
+        if (!dbWalkerData) {
           res.status(404).json({ message: 'No walker found with this id' });
           return;
         }
-        res.json(dbUserData);
+        res.json(dbWalkerData);
       })
       .catch(err => {
         console.log(err);
@@ -44,17 +44,17 @@ router.get('/:id', (req, res) => {
       });
   });
 
-// POST /api/walker 
+// POST /api/walker *****tested
 router.post('/', (req, res) => {
     // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
     Walker.create(req.body)
-    .then(dbUserData => {
+    .then(dbWalkerData => {
       req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.email;
+        req.session.user_id = dbWalkerData.id;
+        req.session.username = dbWalkerData.email;
         req.session.loggedIn = true;
     
-        res.json(dbUserData);
+        res.json(dbWalkerData);
       });
     })
       .catch(err => {
@@ -68,13 +68,13 @@ router.post('/login', (req, res) => {
     where: {
       username: req.body.email
     }
-  }).then(dbUserData => {
-    if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that email address!' });
+  }).then(dbWalkerData => {
+    if (!dbWalkerData) {
+      res.status(400).json({ message: 'No walker with that email address!' });
       return;
     }
 
-    const validPassword = dbUserData.checkPassword(req.body.password);
+    const validPassword = dbWalkerData.checkPassword(req.body.password);
     
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
@@ -82,16 +82,16 @@ router.post('/login', (req, res) => {
     }
     req.session.save(() => {
       // declare session variables
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.email;
+      req.session.user_id = dbWalkerData.id;
+      req.session.username = dbWalkerData.email;
       req.session.loggedIn = true;
 
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
+      res.json({ user: dbWalkerData, message: 'You are now logged in!' });
     });
   });
 });
 
-// POST /api/users/logout
+// POST /api/walkers/logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -107,18 +107,18 @@ router.post('/logout', (req, res) => {
 router.put('/:id', (req, res) => {
    
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
-    User.update(req.body, {
+    Walker.update(req.body, {
       individualHooks: true,
       where: {
         id: req.params.id
       }
     })
-      .then(dbUserData => {
-        if (!dbUserData[0]) {
-          res.status(404).json({ message: 'No user found with this id' });
+      .then(dbWalkerData => {
+        if (!dbWalkerData[0]) {
+          res.status(404).json({ message: 'No walker found with this id' });
           return;
         }
-        res.json(dbUserData);
+        res.json(dbWalkerData);
       })
       .catch(err => {
         console.log(err);
@@ -126,19 +126,19 @@ router.put('/:id', (req, res) => {
       });
   });
 
-// DELETE /api/users/1
+// DELETE /api/walker/1
 router.delete('/:id', (req, res) => {
-    User.destroy({
+    Walker.destroy({
       where: {
         id: req.params.id
       }
     })
-      .then(dbUserData => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'No user found with this id' });
+      .then(dbWalkerData => {
+        if (!dbWalkerData) {
+          res.status(404).json({ message: 'No walker found with this id' });
           return;
         }
-        res.json(dbUserData);
+        res.json(dbWalkerData);
       })
       .catch(err => {
         console.log(err);
