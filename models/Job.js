@@ -30,7 +30,7 @@ Job.init(
         },
 
         timeframe: {
-            type: DataTypes.INTEGER,
+            type:DataTypes.DATE,
             allowNull: false
 
         },
@@ -42,7 +42,8 @@ Job.init(
 
         completed: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
         },
 
         owner_id: {
