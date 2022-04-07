@@ -2,9 +2,9 @@ const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 const { Pets } = require('../../models');
 
-/// GET /api/pets
+/// GET /api/pets   ****tested
 router.get('/', (req, res) => {
-    // Acces our Pets model and run .findAll() method
+    // Access our Pets model and run .findAll() method
     Pets.findAll()
     .then(dbPetsData => res.json(dbPetsData))
     .catch(err => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/pets/id
+// GET /api/pets/id   *****tested
 router.get('/:id', (req, res) => {
     Pets.findOne({
         where: {
@@ -33,10 +33,10 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST /api/Pets
+// POST /api/Pets  *****tested
 router.post('/', (req, res) => {
     Pets.create({
-        id: req.body.id,
+        // id: req.body.id,
         pet_name: req.body.pet_name,
         owner_id: req.body.owner_id,
         pet_type: req.body.pet_type,
