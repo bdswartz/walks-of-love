@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
-const { Post, User, Comment } = require("../models");
 
 // route to the this file /dashboard
 
@@ -13,6 +12,11 @@ const { Post, User, Comment } = require("../models");
 
 router.get("/", (req, res) => {
   res.render("dashboard");
+});
+
+// added a /walker to test out the walker handlbars
+router.get("/walker", (req, res) => {
+  res.render("walker-dashboard");
 });
 
 // Path to edit page where user can edit or delete a post

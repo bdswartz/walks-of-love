@@ -1,16 +1,17 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
 
 // Homepage route
 router.get("/", (req, res) => {
   console.log("test");
   res.render("homepage");
-  res.render("homepage", {
-    loggedIn: req.session.loggedIn,
-    username: req.session.username,
-  });
+  // res.render("homepage", {
+  //   loggedIn: req.session.loggedIn,
+  //   username: req.session.username,
+  // });
 });
+
+// This was data from the module that I commented out
 
 // // Login path
 // router.get("/login", (req, res) => {
