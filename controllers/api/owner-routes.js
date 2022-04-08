@@ -72,6 +72,7 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 // POST /api/owner/login
 router.post("/login", (req, res) => {
   Owner.findOne({
@@ -105,6 +106,7 @@ router.post("/login", (req, res) => {
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      res.json({ message: "You are now logged out!" });
       res.status(204).end();
     });
   } else {
