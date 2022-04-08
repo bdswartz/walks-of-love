@@ -28,14 +28,12 @@ Owner.hasMany(Pets, {
     foreignKey: 'owner_id'
   });
 
-  
-  // Pets.hasMany(Job, {
-  //   through: Vote,
-  //   as: 'voted_posts',
-  //   foreignKey: 'post_id'
-  // })
+  Pets.belongsTo(Job, {
+    foreignKey: 'pets_id',
+    constraints: false
+  })
+  // Pets.belongsTo(Job, {
+  //   foreignKey: 'id'
+  // });
 
-  // Job.hasMany(Pets, {
-
-  // })
 module.exports = { Walker, Owner, Pets, Job };
