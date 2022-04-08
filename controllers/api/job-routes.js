@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 //  route coming into file is  /api/jobs....
 
-// get all jobs ***tested
+// get all jobs   ***tested
 router.get('/', (req, res) => {
   Job.findAll({
       // order: [['timeframe', 'DESC']], 
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     });
   });
 
-// Get one Job by ID  ***tested
+// Get one Job by ID    ***tested
   router.get('/:id', (req, res) => {
     Job.findOne({
       where: {
@@ -56,9 +56,9 @@ router.get('/', (req, res) => {
       });
   });
 
-// Get jobs by Zip
+// Get jobs by Zip   *****tested
   router.post('/zip', (req, res) => {
-    Job.findOne({
+    Job.findAll({
       where: {
         location: req.body.location
       },
@@ -86,7 +86,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  // Get jobs by owner
+  // Get jobs by owner  ****tested
   router.post('/owner', (req, res) => {
     Job.findAll({
       where: {
@@ -116,7 +116,7 @@ router.get('/', (req, res) => {
       });
   });
 
-// Get jobs by walker
+// Get jobs by walker   ****tested
 router.post('/walker', (req, res) => {
   Job.findAll({
     where: {
@@ -198,7 +198,7 @@ router.post('/walker', (req, res) => {
         res.status(500).json(err);
       });
   });
-//  Delete a job
+//  Delete a job  ***** tested
   router.delete('/:id', (req, res) => {
     Job.destroy({
       where: {

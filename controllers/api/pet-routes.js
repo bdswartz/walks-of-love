@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 // PUT /api/Pets/1
 router.put('/:id', (req, res) => {});
 
-// DELETE /api/Pets/1
+// DELETE /api/Pets/#
 router.delete('/:id', (req, res) => {
   Pets.destroy({
     where: {
