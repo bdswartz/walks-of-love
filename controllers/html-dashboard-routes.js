@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
+const { Job, Pets, Owner } = require("../models");
 
 // route to the this file /dashboard
 
@@ -11,7 +12,25 @@ const withAuth = require("../utils/auth");
 // });
 
 router.get("/", (req, res) => {
-  res.render("dashboard");
+  Job.findAll({
+    // order: [['timeframe', 'DESC']],
+    include: [
+      {
+        model: Pets,
+        attributes: ["pet_name", "pet_type", "description", "owner_id"],
+      },
+      {
+        model: Owner,
+        attributes: ["first_name", "last_name"],
+      },
+    ],
+  }).then((dbJobData) => {
+    const jobs = dbJobData.map((job) => job.get({ plain: true }));
+    res.render("dashboard", {
+      jobs,
+      loggedIn: req.session.loggedIn,
+    });
+  });
 });
 
 // added a /walker to test out the walker handlbars
