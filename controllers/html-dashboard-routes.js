@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
     ],
   }).then((dbJobData) => {
     const jobs = dbJobData.map((job) => job.get({ plain: true }));
+    // console.log(jobs);
     res.render("dashboard", {
       jobs,
       loggedIn: req.session.loggedIn,
