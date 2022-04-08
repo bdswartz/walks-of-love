@@ -87,7 +87,7 @@ router.get('/', (req, res) => {
 
   // Get jobs by owner
   router.post('/owner', (req, res) => {
-    Job.findOne({
+    Job.findAll({
       where: {
         owner_id: req.body.owner_id
       },
@@ -117,9 +117,9 @@ router.get('/', (req, res) => {
 
 // Get jobs by walker
 router.post('/walker', (req, res) => {
-  Job.findOne({
+  Job.findAll({
     where: {
-      owner_id: req.body.owner_id
+      walker_id: req.body.walker_id
     },
     include: [
       {
@@ -134,7 +134,7 @@ router.post('/walker', (req, res) => {
   })
     .then(dbJobData => {
       if (!dbJobData) {
-        res.status(404).json({ message: 'No job found with this id' });
+        res.status(404).json({ message: 'No job found with this walker_id' });
         return;
       }
       res.json(dbJobData);
@@ -145,7 +145,7 @@ router.post('/walker', (req, res) => {
     });
 });
 
-  // Create a new job
+  // Create a new job  ****tested
   router.post('/', (req, res) => {
     Job.create({
       pay: req.body.pay,
