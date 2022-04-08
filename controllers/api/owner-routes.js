@@ -54,11 +54,11 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST /api/owner ****tested
-router.post("/", (req, res) => {
-  // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
-  Owner.create(req.body)
-    .then((dbOwnerData) => {
+// POST /api/owners ****tested
+router.post('/', (req, res) => {
+    // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
+    Owner.create(req.body)
+    .then(dbOwnerData => {
       req.session.save(() => {
         req.session.user_id = dbOwnerData.id;
         req.session.email = dbOwnerData.email;
@@ -68,14 +68,13 @@ router.post("/", (req, res) => {
         res.json(dbOwnerData);
       });
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// POST /api/owner/login
-router.post("/login", (req, res) => {
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+// POST /api/owners/login  ******tested
+router.post('/login', (req, res) => {
   Owner.findOne({
     where: {
       email: req.body.email,
@@ -98,14 +97,14 @@ router.post("/login", (req, res) => {
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
       req.session.owner = true;
-
-      res.json({ user: dbOwnerData, message: "You are now logged in!" });
+      req.session.walker = false;
+      res.json({ user: dbOwnerData, message: 'You are now logged in!' });
     });
   });
 });
 
-// POST /api/owner/logout
-router.post("/logout", (req, res) => {
+// POST /api/owner/logout  *****tested
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.json({ message: "You are now logged out!" });
