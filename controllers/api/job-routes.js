@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 //  route coming into file is  /api/jobs....
 
-// get all jobs
+// get all jobs ***tested
 router.get('/', (req, res) => {
   Job.findAll({
       // order: [['timeframe', 'DESC']], 
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     });
   });
 
-// Get one Job by ID
+// Get one Job by ID  ***tested
   router.get('/:id', (req, res) => {
     Job.findOne({
       where: {
@@ -55,6 +55,7 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
+
 // Get jobs by Zip
   router.post('/zip', (req, res) => {
     Job.findOne({
