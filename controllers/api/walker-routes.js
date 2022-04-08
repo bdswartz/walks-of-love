@@ -63,6 +63,7 @@ router.post('/', (req, res) => {
         req.session.user_id = dbWalkerData.id;
         req.session.email = dbWalkerData.email;
         req.session.loggedIn = true;
+        req.session.walker = true;
     
         res.json(dbWalkerData);
       });
@@ -95,6 +96,7 @@ router.post('/login', (req, res) => {
       req.session.user_id = dbWalkerData.id;
       req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
+      req.session.walker = true;
 
       res.json({ user: dbWalkerData, message: 'You are now logged in!' });
     });

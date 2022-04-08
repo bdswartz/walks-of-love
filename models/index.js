@@ -29,8 +29,13 @@ Job.belongsTo(Owner, {
 });
 
 // Need association between Pets and Jobs??
-Pets.belongsTo(Job, {
-  foreignKey: 'pets_id',
+Pets.hasMany(Job, {
+  foreignKey: 'animal_id',
+  constraints: false
+})
+
+Job.belongsTo(Pets, {
+  foreignKey: 'animal_id',
   constraints: false
 })
 
