@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
-const { Walker } = require('../../models');
+const { Walker, Job } = require('../../models');
 
 //  route coming into file is /api/walker
 
@@ -21,12 +21,22 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Walker.findOne({
       attributes: { exclude: ['password'] },
-      // include: [
-      //   {
-      //     model: Job,
-      //     attributes: ['id', 'title', ...]
-      //   }
-      // ],
+      include: [
+        {
+          model: Job,
+          attributes: [
+          'id',
+          'pay',
+          'check_in',
+          'walk',
+          'timeframe',
+          'location',
+          'completed',
+          'owner_id',
+          'animal_id'
+          ]
+        }
+      ],
       where: {
         id: req.params.id
       }
@@ -51,7 +61,7 @@ router.post('/', (req, res) => {
     .then(dbWalkerData => {
       req.session.save(() => {
         req.session.user_id = dbWalkerData.id;
-        req.session.username = dbWalkerData.email;
+        req.session.email = dbWalkerData.email;
         req.session.loggedIn = true;
     
         res.json(dbWalkerData);
@@ -62,11 +72,11 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
       });
   });
-// POST /api/walker/login
+// POST /api/walkers/login
 router.post('/login', (req, res) => {
   Walker.findOne({
     where: {
-      username: req.body.email
+      email: req.body.email
     }
   }).then(dbWalkerData => {
     if (!dbWalkerData) {
@@ -83,7 +93,7 @@ router.post('/login', (req, res) => {
     req.session.save(() => {
       // declare session variables
       req.session.user_id = dbWalkerData.id;
-      req.session.username = dbWalkerData.email;
+      req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
 
       res.json({ user: dbWalkerData, message: 'You are now logged in!' });

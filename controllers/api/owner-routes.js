@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
-const { Owner } = require('../../models');
+const { Owner, Job } = require('../../models');
 
 //  route coming into file is /apis/owner
 
@@ -17,16 +17,26 @@ router.get('/', (req, res) => {
       });
   });
 
-// GET one owner   ****tested
+// GET one owner   ****tested with jobs
 router.get('/:id', (req, res) => {
     Owner.findOne({
       attributes: { exclude: ['password'] },
-    //   include: [
-    //     {
-    //       model: Post,
-    //       attributes: ['id', 'first_name', 'last_name', 'email', ]
-    //     },
-    //   ],
+      include: [
+        {
+          model: Job,
+          attributes: [
+          'id',
+          'pay',
+          'check_in',
+          'walk',
+          'timeframe',
+          'location',
+          'completed',
+          'owner_id',
+          'animal_id'
+          ]
+        }
+      ],
       where: {
         id: req.params.id
       }

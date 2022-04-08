@@ -29,5 +29,9 @@ Job.belongsTo(Owner, {
 });
 
 // Need association between Pets and Jobs??
+Pets.belongsTo(Job, {
+  foreignKey: 'pets_id',
+  constraints: false
+})
 
 module.exports = { Walker, Owner, Pets, Job };
