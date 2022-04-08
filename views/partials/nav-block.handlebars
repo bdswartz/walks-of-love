@@ -15,8 +15,10 @@
       </li>
     {{else}}
       <li class="nav-item">
-        <a class="nav-link" href="#" id="login">Login</a>
+        <a class="btn btn-lg btn-success nav-link" type="button" data-toggle="modal" data-target="#user-info" id="login">Login</a>
       </li>
     {{/if}}
   </ul>
 </nav>
+
+{{> modal/login }}
