@@ -53,6 +53,23 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {});
 
 // DELETE /api/Pets/1
-router.delete('/:id', (req, res) => {});
+router.delete('/:id', (req, res) => {
+  Pets.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbPetsData => {
+      if(!dbPetsData) {
+        res.status(404).json({ message: 'No pet found with this id' });
+          return;
+      }
+      res.json(dbPetsData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
