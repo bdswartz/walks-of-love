@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       });
   });
 
-// GET one walker
+// GET one walker  *****tested
 router.get('/:id', (req, res) => {
     Walker.findOne({
       attributes: { exclude: ['password'] },
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
       });
   });
-// POST /api/walkers/login
+// POST /api/walkers/login   *****tested
 router.post('/login', (req, res) => {
   Walker.findOne({
     where: {
@@ -97,13 +97,14 @@ router.post('/login', (req, res) => {
       req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
       req.session.walker = true;
+      req.session.owner = false;
 
       res.json({ user: dbWalkerData, message: 'You are now logged in!' });
     });
   });
 });
 
-// POST /api/walkers/logout
+// POST /api/walkers/logout    ******tested
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -115,7 +116,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// PUT /api/walker/1
+// PUT /api/walker/#    *****tested
 router.put('/:id', (req, res) => {
    
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
@@ -138,7 +139,7 @@ router.put('/:id', (req, res) => {
       });
   });
 
-// DELETE /api/walker/1
+// DELETE /api/walker/#    *****tested
 router.delete('/:id', (req, res) => {
     Walker.destroy({
       where: {

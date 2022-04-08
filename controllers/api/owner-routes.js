@@ -54,7 +54,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-// POST /api/owner ****tested
+// POST /api/owners ****tested
 router.post('/', (req, res) => {
     // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
     Owner.create(req.body)
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
       });
   });
-// POST /api/owner/login
+// POST /api/owners/login  ******tested
 router.post('/login', (req, res) => {
   Owner.findOne({
     where: {
@@ -97,13 +97,13 @@ router.post('/login', (req, res) => {
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
       req.session.owner = true;
-
+      req.session.walker = false;
       res.json({ user: dbOwnerData, message: 'You are now logged in!' });
     });
   });
 });
 
-// POST /api/owner/logout
+// POST /api/owner/logout  *****tested
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
