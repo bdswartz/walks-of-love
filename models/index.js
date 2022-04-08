@@ -28,10 +28,16 @@ Owner.hasMany(Pets, {
     foreignKey: 'owner_id'
   });
 
-  Pets.belongsTo(Job, {
-    foreignKey: 'pets_id',
+  Pets.hasMany(Job, {
+    foreignKey: 'job_id',
+    
+  })
+
+  Job.belongsTo(Pets, {
+    foreignKey: 'animal_id',
     constraints: false
   })
+ 
   // Pets.belongsTo(Job, {
   //   foreignKey: 'id'
   // });
