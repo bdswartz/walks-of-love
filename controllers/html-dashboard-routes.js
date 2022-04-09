@@ -29,6 +29,21 @@ router.get("/", (req, res) => {
   });
 });
 
+// router.get("/", (req, res) => {
+//   Pets.findAll({
+//     // order: [['timeframe', 'DESC']],
+//     where: {
+//       owner_id: 1,
+//     },
+//   }).then((dbJobData) => {
+//     const ownersPets = dbJobData.map((pets) => pets.get({ plain: true }));
+//     res.render("dashboard", {
+//       ownersPets,
+//       // loggedIn: req.session.loggedIn,
+//     });
+//   });
+// });
+
 // I did this findall to test stuff for the walker page in handlebars
 // added a /walker to test out the walker handlbars
 router.get("/walker", (req, res) => {
