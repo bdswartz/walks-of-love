@@ -4,9 +4,9 @@ const withAuth = require('../../utils/auth');
 // require the operator form from Sequelize to use operators in queries
 const { Op } = require("sequelize");
 
-//  route coming into file is  /api/jobs....
+//  route coming into file is  https://pacific-depths-79804.herokuapp.com/api/jobs....
 
-// get all jobs   ***tested
+// get all jobs
 router.get('/', (req, res) => {
   Job.findAll({
       order: [['timeframe', 'DESC']], 
@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
     });
   });
 
-// Get one Job by ID    ***tested
+// Get one Job by ID 
   router.get('/:id', (req, res) => {
     Job.findOne({
       where: {
@@ -58,7 +58,7 @@ router.get('/', (req, res) => {
       });
   });
 
-// Get *open* jobs by Zip   *****tested
+// Get *open* jobs by Zip
   router.post('/zip', (req, res) => {
     // expects {location: #####}
     Job.findAll({
@@ -124,7 +124,7 @@ router.post('/find', (req, res) => {
     });
 });
 
-  // Get jobs by owner  ****tested
+  // Get jobs by owner
   router.post('/owner', (req, res) => {
     // expects {owner_id: {public key from Hiro}}
     Job.findAll({
@@ -156,7 +156,7 @@ router.post('/find', (req, res) => {
       });
   });
 
-// Get jobs by walker   ****tested
+// Get jobs by walker
 router.post('/walker', (req, res) => {
    // expected body {walker_id: {public key from Hiro}}
   Job.findAll({
@@ -188,7 +188,7 @@ router.post('/walker', (req, res) => {
     });
 });
 
-  // Create a new job  ****tested
+  // Create a new job
   router.post('/', (req, res) => {
     Job.create({
       pay: req.body.pay,
@@ -242,7 +242,7 @@ router.post('/walker', (req, res) => {
         res.status(500).json(err);
       });
   });
-//  Delete a job  ***** tested
+//  Delete a job
   router.delete('/:id', (req, res) => {
     Job.destroy({
       where: {

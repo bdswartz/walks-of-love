@@ -2,9 +2,9 @@ const router = require("express").Router();
 const withAuth = require("../../utils/auth");
 const { Walker, Job } = require("../../models");
 
-//  route coming into file is /api/walker
+//  route coming into file is https://pacific-depths-79804.herokuapp.com/api/walker
 
-// GET all walkers   *****tested
+// GET all walkers
 router.get("/", (req, res) => {
   // Access our Walker model and run .findAll() method)
   Walker.findAll({
