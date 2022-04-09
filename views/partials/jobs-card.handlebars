@@ -8,6 +8,14 @@
         <h5 class="card-text">Pay: {{ this.pay }}</h5>
         <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
         <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
+        {{!-- (HELPER) function that determines if the person logged in is the creator of this job and it's active--}}
+        {{#if jobCreator}}
+        <button id="delete-job" class="float-right btn success" type="button">Delete</button>
+        {{/if}}
+        {{!-- (HELPER) if logged in as walker and job not accepted --}}
+        {{#if acceptable}}
+        <button id="accept-job" class="float-right btn success" type="button">Accept</button>
+        {{/if}}
     </div>
 </div>
 {{/each}}

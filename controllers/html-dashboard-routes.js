@@ -22,12 +22,32 @@ router.get("/", (req, res) => {
     ],
   }).then((dbJobData) => {
     const jobs = dbJobData.map((job) => job.get({ plain: true }));
-    res.render("dashboard", {
-      jobs,
-      // loggedIn: req.session.loggedIn,
+    Pets.findAll({
+      where: {
+        owner_id: 1,
+      },
+    }).then((dbJobData) => {
+      const ownersPets = dbJobData.map((pets) => pets.get({ plain: true }));
+      console.log(ownersPets);
+      res.render("dashboard", {
+        jobs,
+        ownersPets,
+      });
     });
   });
 });
+
+// async function getOwnerspets() {
+//   Pets.findAll({
+//     where: {
+//       owner_id: 1,
+//     },
+//   }).then((dbJobData) => {
+//     const ownersPets = dbJobData.map((pets) => pets.get({ plain: true }));
+//     return ownersPets;
+//     // console.log(ownersPets);
+//   });
+// }
 
 // I did this findall to test stuff for the walker page in handlebars
 // added a /walker to test out the walker handlbars
