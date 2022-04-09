@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // const withAuth = require('../../utils/auth');
-const { Owner, Job } = require("../../models");
+const { Owner, Job, Pets } = require('../../models');
 
 //  route coming into file is /apis/owner
 
@@ -17,33 +17,37 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET one owner   ****tested with jobs
-router.get("/:id", (req, res) => {
-  Owner.findOne({
-    attributes: { exclude: ["password"] },
-    include: [
-      {
-        model: Job,
-        attributes: [
-          "id",
-          "pay",
-          "check_in",
-          "walk",
-          "timeframe",
-          "location",
-          "completed",
-          "owner_id",
-          "animal_id",
-        ],
-      },
-    ],
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbOwnerData) => {
+// GET one owner and associated jobs and pets   ****tested with jobs
+router.get('/:id', (req, res) => {
+    Owner.findOne({
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Job,
+          attributes: [
+          'id',
+          'pay',
+          'check_in',
+          'walk',
+          'timeframe',
+          'location',
+          'completed',
+          'owner_id',
+          'animal_id'
+          ]
+        },
+        {
+          model: Pets,
+          attributes: ['id', 'pet_name', 'pet_type', 'description'],
+        }
+      ],
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(dbOwnerData => {
       if (!dbOwnerData) {
-        res.status(404).json({ message: "No owner found with this id" });
+        res.status(404).json({ message: 'No user found with this id' });
         return;
       }
       res.json(dbOwnerData);
