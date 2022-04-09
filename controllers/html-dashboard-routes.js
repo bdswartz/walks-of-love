@@ -26,8 +26,8 @@ router.get("/", (req, res) => {
       where: {
         owner_id: 1,
       },
-    }).then((dbJobData) => {
-      const ownersPets = dbJobData.map((pets) => pets.get({ plain: true }));
+    }).then((dbPetData) => {
+      const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
       console.log(ownersPets);
       res.render("dashboard", {
         jobs,
