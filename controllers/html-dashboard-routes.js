@@ -1,22 +1,59 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
+const { Job, Pets, Owner } = require("../models");
 
-// route to the this file /dashboard
-
-// User Dashboard HTML route
-// router.get("/", withAuth, (req, res) => {
-//   // res.render("dashboard", { loggedIn: true, username: req.session.username });
-//   res.render("dashboard");
-// });
-
+// gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
-  res.render("dashboard");
+  Job.findAll({
+    // order: [['timeframe', 'DESC']],
+    where: {
+      owner_id: 1,
+    },
+    include: [
+      {
+        model: Pets,
+        attributes: ["pet_name", "pet_type", "description", "owner_id"],
+      },
+      {
+        model: Owner,
+        attributes: ["first_name", "last_name"],
+      },
+    ],
+  }).then((dbJobData) => {
+    const jobs = dbJobData.map((job) => job.get({ plain: true }));
+    res.render("dashboard", {
+      jobs,
+      // loggedIn: req.session.loggedIn,
+    });
+  });
 });
 
+// I did this findall to test stuff for the walker page in handlebars
 // added a /walker to test out the walker handlbars
 router.get("/walker", (req, res) => {
-  res.render("walker-dashboard");
+  Job.findAll({
+    // order: [['timeframe', 'DESC']],
+    where: {
+      walker_id: 1,
+    },
+    include: [
+      {
+        model: Pets,
+        attributes: ["pet_name", "pet_type", "description", "owner_id"],
+      },
+      {
+        model: Owner,
+        attributes: ["first_name", "last_name"],
+      },
+    ],
+  }).then((dbJobData) => {
+    const jobs = dbJobData.map((job) => job.get({ plain: true }));
+    res.render("walker-dashboard", {
+      jobs,
+      loggedIn: req.session.loggedIn,
+    });
+  });
 });
 
 // Path to edit page where user can edit or delete a post
