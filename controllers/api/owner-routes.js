@@ -58,9 +58,9 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST /api/owner ****tested
+// POST /api/owner (create an owner - used for the signup of new owners)
 router.post("/", (req, res) => {
-  // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
+  // expects {id: 'ggggggg' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
   Owner.create(req.body)
     .then((dbOwnerData) => {
       req.session.save(() => {
@@ -68,7 +68,6 @@ router.post("/", (req, res) => {
         req.session.email = dbOwnerData.email;
         req.session.loggedIn = true;
         req.session.owner = true;
-
         res.json(dbOwnerData);
       });
     })

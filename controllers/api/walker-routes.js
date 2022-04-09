@@ -54,9 +54,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST /api/walker *****tested
+// POST /api/walker (used to create a walker on signup)
 router.post("/", (req, res) => {
-  // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
+  // expects {id: 'xxxxx' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
   Walker.create(req.body)
     .then((dbWalkerData) => {
       req.session.save(() => {
