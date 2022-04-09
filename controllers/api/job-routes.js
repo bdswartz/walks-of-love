@@ -60,6 +60,7 @@ router.get('/', (req, res) => {
 
 // Get *open* jobs by Zip   *****tested
   router.post('/zip', (req, res) => {
+    // expects {location: #####}
     Job.findAll({
       order: [['timeframe', 'DESC']], 
       where: {
@@ -93,7 +94,7 @@ router.get('/', (req, res) => {
 // Experimental post for finding jobs by multiple values NOT TO BE USED YET
 // currently set up to give all jobs in a user specified time range ***tested
 router.post('/find', (req, res) => {
-  // expected {time_begin: ISO time string, time_end:ISO time string}
+  // expected {time_begin: YYYY-MM-DDTHH:mm:ss.sssZ, time_end:YYYY-MM-DDTHH:mm:ss.sssZ}
   Job.findAll({
     order: [['timeframe', 'DESC']], 
     where: {
@@ -123,9 +124,9 @@ router.post('/find', (req, res) => {
     });
 });
 
-
   // Get jobs by owner  ****tested
   router.post('/owner', (req, res) => {
+    // expects {owner_id: {public key from Hiro}}
     Job.findAll({
       order: [['timeframe', 'DESC']], 
       where: {
@@ -157,6 +158,7 @@ router.post('/find', (req, res) => {
 
 // Get jobs by walker   ****tested
 router.post('/walker', (req, res) => {
+   // expected body {walker_id: {public key from Hiro}}
   Job.findAll({
     order: [['timeframe', 'DESC']], 
     where: {
@@ -209,7 +211,7 @@ router.post('/walker', (req, res) => {
   // Edit a job by job id - used for a walker to accept a job by 
   // putting the walker_id into the field 
   router.put('/:id', (req, res) => {
-    // expected body { ""walker_id": # }
+      // expected body {walker_id: {public key from Hiro}}
     Job.update(
       {
         // pay: req.body.pay,
