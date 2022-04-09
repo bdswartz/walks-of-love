@@ -17,28 +17,34 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET one walker  *****tested
-router.get('/:id', (req, res) => {
-    Walker.findOne({
-      attributes: { exclude: ['password'] },
-      include: [
-        {
-          model: Job,
-          attributes: [
-          'id',
-          'pay',
-          'check_in',
-          'walk',
-          'timeframe',
-          'location',
-          'completed',
-          'owner_id',
-          'animal_id'
-          ]
-        }
-      ],
-      where: {
-        id: req.params.id
+// GET one walker
+router.get("/:id", (req, res) => {
+  Walker.findOne({
+    attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Job,
+        attributes: [
+          "id",
+          "pay",
+          "check_in",
+          "walk",
+          "timeframe",
+          "location",
+          "completed",
+          "owner_id",
+          "animal_id",
+        ],
+      },
+    ],
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbWalkerData) => {
+      if (!dbWalkerData) {
+        res.status(404).json({ message: "No walker found with this id" });
+        return;
       }
       res.json(dbWalkerData);
     })
@@ -62,13 +68,15 @@ router.post("/", (req, res) => {
         res.json(dbWalkerData);
       });
     })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
-// POST /api/walkers/login   *****tested
-router.post('/login', (req, res) => {
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// POST /api/walkers/login
+router.post("/login", (req, res) => {
+
   Walker.findOne({
     where: {
       email: req.body.email,
@@ -98,8 +106,8 @@ router.post('/login', (req, res) => {
   });
 });
 
-// POST /api/walkers/logout    ******tested
-router.post('/logout', (req, res) => {
+// POST /api/walkers/logout
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -109,14 +117,19 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// PUT /api/walker/#    *****tested
-router.put('/:id', (req, res) => {
-   
-    // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
-    Walker.update(req.body, {
-      individualHooks: true,
-      where: {
-        id: req.params.id
+// PUT /api/walker/1
+router.put("/:id", (req, res) => {
+  // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
+  Walker.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbWalkerData) => {
+      if (!dbWalkerData[0]) {
+        res.status(404).json({ message: "No walker found with this id" });
+        return;
       }
       res.json(dbWalkerData);
     })
@@ -126,11 +139,17 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// DELETE /api/walker/#    *****tested
-router.delete('/:id', (req, res) => {
-    Walker.destroy({
-      where: {
-        id: req.params.id
+// DELETE /api/walker/1
+router.delete("/:id", (req, res) => {
+  Walker.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbWalkerData) => {
+      if (!dbWalkerData) {
+        res.status(404).json({ message: "No walker found with this id" });
+        return;
       }
       res.json(dbWalkerData);
     })

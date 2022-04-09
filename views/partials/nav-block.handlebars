@@ -1,21 +1,25 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <!-- Brand/logo -->
   <a class="navbar-brand" href="/">
     Scout
   </a>
   
-  <!-- Links -->
   <ul class="nav navbar-nav ml-auto">
     {{#if loggedIn}}
       <li class="nav-item">
-        <a class="nav-link" href="/profile">Username here</a>
+        <div class="dropdown">
+          <button class="btn success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Job Search</button>
+            <button class="dropdown-item" type="button">Dashboard</button>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout" id="logout">Logout</a>
+        <a class="btn success" href="/logout" id="logout">Logout</a>
       </li>
     {{else}}
       <li class="nav-item">
-        <a class="btn btn-lg btn-success nav-link" type="button" data-toggle="modal" data-target="#user-info" id="login">Login</a>
+        <a class="btn success" type="button" data-toggle="modal" data-target="#user-info" id="login">Login</a>
       </li>
     {{/if}}
   </ul>
