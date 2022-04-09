@@ -1,18 +1,40 @@
 async function createPostHandler(event) {
   event.preventDefault();
-  console.log("TETSTSTSTSTSTSTSTSTSTSTSTSTSTSTSSSSSSSSSSSST");
-  if (1 === 1) {
+
+  const payStr = document.querySelector('input[name="pay"]').value.trim();
+  const pay = parseInt(payStr);
+
+  const dateStart = document.getElementById("date-start").value;
+  const hourStart = document.getElementById("hour-start").value;
+  const timeframe = dateStart + "T" + hourStart + "Z";
+
+  const locationStr = document
+    .querySelector('input[name="location"]')
+    .value.trim();
+  const location = parseInt(locationStr);
+
+  var visitType = document.getElementById("visit-type");
+  var selectedValue = visitType.options[visitType.selectedIndex].value;
+  if (selectedValue == "Walk") {
+    walk = true;
+    check_in = false;
+  } else {
+    walk = false;
+    check_in = true;
+  }
+
+  if ((pay, location, timeframe)) {
     const response = await fetch("/api/jobs", {
       method: "POST",
       body: JSON.stringify({
-        pay: 420,
-        check_in: false,
-        walk: true,
-        timeframe: 5649290473,
-        location: 27407,
+        pay,
+        check_in,
+        walk,
+        timeframe,
+        location,
         completed: false,
         owner_id: 1,
-        walker_id: 1,
+        walker_id: null,
         animal_id: 1,
       }),
       headers: {

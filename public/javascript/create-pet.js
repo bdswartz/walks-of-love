@@ -5,6 +5,7 @@ async function commentFormHandler(event) {
     .querySelector('input[name="pet-name"]')
     .value.trim();
 
+  // this owner_id needs to be changed based off of who is logged in
   const owner_id = 1;
 
   const pet_type = document
