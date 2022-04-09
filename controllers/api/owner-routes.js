@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 
 // POST /api/owner (create an owner - used for the signup of new owners)
 router.post("/", (req, res) => {
-  // expects {id: 'ggggggg' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
+  // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
   Owner.create(req.body)
     .then((dbOwnerData) => {
       req.session.save(() => {
