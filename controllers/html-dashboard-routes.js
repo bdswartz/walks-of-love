@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     // order: [['timeframe', 'DESC']],
     where: {
       owner_id: 1,
+      completed: false,
     },
     include: [
       {
