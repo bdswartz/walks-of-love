@@ -44,6 +44,12 @@ router.get('/:id', (req, res) => {
       where: {
         id: req.params.id
       }
+    })
+    .then(dbOwnerData => {
+      if (!dbOwnerData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
       res.json(dbOwnerData);
     })
     .catch((err) => {
