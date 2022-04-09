@@ -77,6 +77,7 @@ router.post("/", (req, res) => {
 // POST /api/owner/login
 router.post("/login", (req, res) => {
   console.log(req.session);
+  
   Owner.findOne({
     where: {
       email: req.body.email,
@@ -99,7 +100,6 @@ router.post("/login", (req, res) => {
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
       req.session.owner = true;
-
       res.json({ user: dbOwnerData, message: "You are now logged in!" });
     });
   });

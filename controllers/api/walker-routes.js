@@ -73,8 +73,10 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 // POST /api/walkers/login
 router.post("/login", (req, res) => {
+
   Walker.findOne({
     where: {
       email: req.body.email,
@@ -97,6 +99,7 @@ router.post("/login", (req, res) => {
       req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
       req.session.walker = true;
+      req.session.owner = false;
 
       res.json({ user: dbWalkerData, message: "You are now logged in!" });
     });
