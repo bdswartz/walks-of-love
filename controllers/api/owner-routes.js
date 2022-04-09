@@ -2,9 +2,9 @@ const router = require("express").Router();
 // const withAuth = require('../../utils/auth');
 const { Owner, Job, Pets } = require('../../models');
 
-//  route coming into file is /apis/owner
+//  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
-// GET all owners  ****tested
+// GET all owners
 router.get("/", (req, res) => {
   // Access the owner model and run .findAll() method)
   Owner.findAll({
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET one owner and associated jobs and pets   ****tested with jobs
+// GET one owner and associated jobs and pets
 router.get('/:id', (req, res) => {
     Owner.findOne({
       attributes: { exclude: ['password'] },
@@ -121,7 +121,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT /api/owner/1 ****tested
+// PUT /api/owner/1
 router.put("/:id", (req, res) => {
   Owner.update(req.body, {
     individualHooks: true,
@@ -142,7 +142,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE /api/owner/1  *****tested
+// DELETE /api/owner/1 
 router.delete("/:id", (req, res) => {
   Owner.destroy({
     where: {
