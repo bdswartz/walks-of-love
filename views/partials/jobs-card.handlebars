@@ -1,21 +1,10 @@
-{{!-- {{#each this}}
-<div class="card mb-2">
-    <div class="card-body">
-        <h4 class="card-title">Owner Name</h5>
-        <h5 class="card-subtitle mb-2 text-muted">Visit: Walk</h6>
-        <h5 class="card-text">Pay: $35</h5>
-        <h6 class="card-text text-muted">Time: 4/6/2022 at 3:00pm</h6>
-        <h6 class="card-text text-muted">Location: 1234 Big Dog Ct, Raleigh, NC, 27103</h6>
-    </div>
-</div>
-{{/each}} --}}
-
 <div class="jobs">
 {{#each this}}
 <div class="card mb-2">
     <div class="card-body">
         <h4 class="card-title">{{ owner.first_name }} {{ owner.last_name }}</h5>
-        <h5 class="card-subtitle mb-2 text-muted">Visit: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h6>
+        <h5 class="card-text">Pet: {{ pet.pet_name }}</h5>
+        <h5 class="card-subtitle">Visit: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h6>
         <h5 class="card-text">Pay: {{ this.pay }}</h5>
         <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
         <h6 class="card-text text-muted">Location: {{ this.location }}</h6>

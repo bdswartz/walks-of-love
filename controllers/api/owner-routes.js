@@ -76,6 +76,7 @@ router.post("/", (req, res) => {
 
 // POST /api/owner/login
 router.post("/login", (req, res) => {
+  console.log(req.session);
   Owner.findOne({
     where: {
       email: req.body.email,
@@ -109,6 +110,7 @@ router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.json({ message: "You are now logged out!" });
+      console.log("logged out");
       res.status(204).end();
     });
   } else {
