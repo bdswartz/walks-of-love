@@ -9,7 +9,7 @@
 
             {{> pets-card ownersPets}}
 
-            <form class="card" style="width: 18rem;">
+            <form class="create-pet-form card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Add a Pet</h5>
                     <div class="form-outline">
@@ -26,22 +26,27 @@
                     <button class="float-right mr-3 mb-3 btn success" type="submit">Confirm</button>
                 </div>
             </form>
+
         </div>  
     </div>
     
     <div id="jobs-container" class="d-flex flex-column mx-auto" style="width: 92%;">
+
         <div class="d-flex flex-row justify-content-between mt-2">
             <h1>Job Postings</h2>
         </div>
+
         <div class="tabbable">
+            
             <ul class="nav nav-tabs">
                 <li class="active nav-item">
-                    <a class="nav-link active job-tab" href="#tab1" data-toggle="tab">Current posts</a>
+                    <a class="nav-link active job-tab current-jobs-tab" href="#tab1" data-toggle="tab">Current posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link job-tab" href="#tab2" data-toggle="tab">Past posts</a>
+                    <a class="nav-link job-tab past-jobs-tab" href="#tab2" data-toggle="tab">Past posts</a>
                 </li>
             </ul>
+
             <div class="tab-content">
                 <div class="tab-pane active" id="tab1">
                     <p>List of current jobs</p>
@@ -49,11 +54,16 @@
                 </div>
                 <div class="tab-pane" id="tab2">
                     <p>List of past jobs</p>
-                    {{> jobs-card jobsCompleted }}
+                    {{> jobs-card completedJobs }}
                 </div>
             </div>
+
         </div>  
     </div>     
 </div>
+
+<script src="/javascript/create-pet.js"></script>
+<script src="/javascript/create-job.js"></script>
+
 
 {{> modal/create-job }}
