@@ -53,37 +53,3 @@ async function createPostHandler(event) {
 document
   .querySelector(".create-job-form")
   .addEventListener("submit", createPostHandler);
-
-async function pastJobsHandler(event) {
-  alert("it worked!");
-
-  event.preventDefault();
-  const response = await fetch("/api/jobs", (req, res) => {
-    Job.findAll({
-      // order: [['timeframe', 'DESC']],
-      where: {
-        owner_id: 1,
-        completed: true,
-      },
-      include: [
-        {
-          model: Pets,
-          attributes: ["pet_name", "pet_type", "description", "owner_id"],
-        },
-        {
-          model: Owner,
-          attributes: ["first_name", "last_name"],
-        },
-      ],
-    });
-    if (response.ok) {
-      document.location.reload();
-    } else {
-      alert(response.statusText);
-    }
-  });
-}
-
-document
-  .querySelector(".past-jobs-tab")
-  .addEventListener("click", pastJobsHandler);

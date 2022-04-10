@@ -40,7 +40,7 @@
             
             <ul class="nav nav-tabs">
                 <li class="active nav-item">
-                    <a class="nav-link active job-tab" href="#tab1" data-toggle="tab">Current posts</a>
+                    <a class="nav-link active job-tab current-jobs-tab" href="#tab1" data-toggle="tab">Current posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link job-tab past-jobs-tab" href="#tab2" data-toggle="tab">Past posts</a>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="tab-pane" id="tab2">
                     <p>List of past jobs</p>
-                    {{> jobs-card jobsCompleted }}
+                    {{> jobs-card completedJobs }}
                 </div>
             </div>
 
