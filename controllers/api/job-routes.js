@@ -58,11 +58,14 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Get jobs by Zip   *****tested
+// Get *open* jobs by Zip
 router.post("/zip", (req, res) => {
+  // expects {location: #####}
   Job.findAll({
+    order: [["timeframe", "DESC"]],
     where: {
       location: req.body.location,
+      // walker_id: null
     },
     include: [
       {
@@ -118,8 +121,9 @@ router.post("/owner", (req, res) => {
     });
 });
 
-// Get jobs by walker   ****tested
+// Get jobs by walker
 router.post("/walker", (req, res) => {
+  // expected body {walker_id: {public key from Hiro}}
   Job.findAll({
     order: [["timeframe", "DESC"]],
     where: {
@@ -169,9 +173,9 @@ router.post("/", (req, res) => {
     });
 });
 
-// Edit a job by job id
-router.put("/:id", (req, res) => {
-  Job.update(
+// Create a new job
+router.post("/", (req, res) => {
+  Job.create(
     {
       pay: req.body.pay,
       check_in: req.body.check_in,
@@ -201,6 +205,7 @@ router.put("/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 //  Delete a job  ***** tested
 router.delete("/:id", (req, res) => {
   Job.destroy({
