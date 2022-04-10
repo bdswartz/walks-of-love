@@ -8,7 +8,15 @@ const ownerData = [
         email: 'email',
         password: 'password'
         
+    },
+    {
+        id: "SP29AZWNBFXEHJGBQ2BMQ71W8R79DCA3NZQ7QJ367",
+        first_name: 'John',
+        last_name: 'Owner',
+        email: 'email',
+        password: 'password'
     }
+    
 
 ];
 

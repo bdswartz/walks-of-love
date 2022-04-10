@@ -8,6 +8,14 @@ const walkerData = [
         email: 'email',
         password: 'password'
         
+    },
+    {
+        id: "SP206YJ9G14C3FD0JZE3C92KZ3V35JVNVW93Q0VKQ",
+        first_name: 'John',
+        last_name: 'Walker',
+        email: 'email',
+        password: 'password'
+        
     }
 ];
 
