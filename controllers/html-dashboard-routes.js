@@ -24,9 +24,6 @@ router.get("/", (req, res) => {
   }).then((dbJobData) => {
     const jobsClean = dbJobData.map((job) => job.get({ plain: true }));
     let jobs = jobsClean.filter((job) => job.completed == false);
-    // let jobs = [];
-    // jobs.push(filtered);
-    console.log(jobs);
 
     const completedJobsClean = dbJobData.map((job) => job.get({ plain: true }));
     let completedJobs = completedJobsClean.filter(
