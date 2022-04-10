@@ -47,7 +47,7 @@ Job.init(
         },
 
         owner_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             references: {
                 model: 'owner',
                 key: 'id'
@@ -55,7 +55,7 @@ Job.init(
         },
 
         walker_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true,
             references: {
                 model: 'walker',

@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     // order: [['timeframe', 'DESC']],
     where: {
       owner_id: 1,
+      // completed: false,
     },
     include: [
       {
@@ -21,10 +22,26 @@ router.get("/", (req, res) => {
       },
     ],
   }).then((dbJobData) => {
-    const jobs = dbJobData.map((job) => job.get({ plain: true }));
-    res.render("dashboard", {
-      jobs,
-      // loggedIn: req.session.loggedIn,
+    const jobsClean = dbJobData.map((job) => job.get({ plain: true }));
+    let jobs = jobsClean.filter((job) => job.completed == false);
+
+    const completedJobsClean = dbJobData.map((job) => job.get({ plain: true }));
+    let completedJobs = completedJobsClean.filter(
+      (job) => job.completed == true
+    );
+
+    Pets.findAll({
+      where: {
+        owner_id: 1,
+      },
+    }).then((dbPetData) => {
+      const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
+      // console.log(ownersPets);
+      res.render("dashboard", {
+        jobs,
+        ownersPets,
+        completedJobs,
+      });
     });
   });
 });

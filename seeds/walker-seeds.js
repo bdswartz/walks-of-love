@@ -7,7 +7,6 @@ const walkerData = [
         last_name: 'Walker',
         email: 'email',
         password: 'password'
-        
     },
     {
         id: "SP206YJ9G14C3FD0JZE3C92KZ3V35JVNVW93Q0VKQ",
@@ -15,7 +14,6 @@ const walkerData = [
         last_name: 'Walker',
         email: 'email',
         password: 'password'
-        
     }
 ];
 

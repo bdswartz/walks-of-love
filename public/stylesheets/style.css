@@ -14,11 +14,11 @@ body {
   padding: 0;
 }
 
-.nav-link {
+/* .nav-link {
   background-color: #55C35E !important;
   color: #FFFFFF !important;
   margin-right: 5px;
-}
+} */
 
 .jumbotron {
   background: rgba(0,0,0,0);
@@ -101,8 +101,7 @@ hr {
 }
 
 .dashboard-container {
-  width: 100vw;
-  height: 300vh;
+  min-height: 100vh;
   background-color: #FAF9F5;
 }
 
@@ -133,4 +132,12 @@ hr {
 
 #about-pet-input {
   width: 100%;
+}
+
+.job-tab {
+  color: #55C35E;
+}
+
+#jobs-in-area {
+  color: #55C35E;
 }

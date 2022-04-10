@@ -2,9 +2,9 @@ const router = require("express").Router();
 const withAuth = require("../../utils/auth");
 const { Walker, Job } = require("../../models");
 
-//  route coming into file is /api/walker
+//  route coming into file is https://pacific-depths-79804.herokuapp.com/api/walker
 
-// GET all walkers   *****tested
+// GET all walkers
 router.get("/", (req, res) => {
   // Access our Walker model and run .findAll() method)
   Walker.findAll({
@@ -54,9 +54,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST /api/walker *****tested
+// POST /api/walker (used to create a walker on signup)
 router.post("/", (req, res) => {
-  // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
+  // expects {id: 'xxxxx' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
   Walker.create(req.body)
     .then((dbWalkerData) => {
       req.session.save(() => {
@@ -73,8 +73,10 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 // POST /api/walkers/login
 router.post("/login", (req, res) => {
+
   Walker.findOne({
     where: {
       email: req.body.email,
@@ -97,6 +99,7 @@ router.post("/login", (req, res) => {
       req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
       req.session.walker = true;
+      req.session.owner = false;
 
       res.json({ user: dbWalkerData, message: "You are now logged in!" });
     });

@@ -1,10 +1,10 @@
 const router = require("express").Router();
 // const withAuth = require('../../utils/auth');
-const { Owner, Job } = require("../../models");
+const { Owner, Job, Pets } = require('../../models');
 
-//  route coming into file is /apis/owner
+//  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
-// GET all owners  ****tested
+// GET all owners
 router.get("/", (req, res) => {
   // Access the owner model and run .findAll() method)
   Owner.findAll({
@@ -17,33 +17,37 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET one owner   ****tested with jobs
-router.get("/:id", (req, res) => {
-  Owner.findOne({
-    attributes: { exclude: ["password"] },
-    include: [
-      {
-        model: Job,
-        attributes: [
-          "id",
-          "pay",
-          "check_in",
-          "walk",
-          "timeframe",
-          "location",
-          "completed",
-          "owner_id",
-          "animal_id",
-        ],
-      },
-    ],
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbOwnerData) => {
+// GET one owner and associated jobs and pets
+router.get('/:id', (req, res) => {
+    Owner.findOne({
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Job,
+          attributes: [
+          'id',
+          'pay',
+          'check_in',
+          'walk',
+          'timeframe',
+          'location',
+          'completed',
+          'owner_id',
+          'animal_id'
+          ]
+        },
+        {
+          model: Pets,
+          attributes: ['id', 'pet_name', 'pet_type', 'description'],
+        }
+      ],
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(dbOwnerData => {
       if (!dbOwnerData) {
-        res.status(404).json({ message: "No owner found with this id" });
+        res.status(404).json({ message: 'No user found with this id' });
         return;
       }
       res.json(dbOwnerData);
@@ -54,9 +58,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST /api/owner ****tested
+// POST /api/owner (create an owner - used for the signup of new owners)
 router.post("/", (req, res) => {
-  // expects {first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
+  // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
   Owner.create(req.body)
     .then((dbOwnerData) => {
       req.session.save(() => {
@@ -64,7 +68,6 @@ router.post("/", (req, res) => {
         req.session.email = dbOwnerData.email;
         req.session.loggedIn = true;
         req.session.owner = true;
-
         res.json(dbOwnerData);
       });
     })
@@ -77,6 +80,7 @@ router.post("/", (req, res) => {
 // POST /api/owner/login
 router.post("/login", (req, res) => {
   console.log(req.session);
+  
   Owner.findOne({
     where: {
       email: req.body.email,
@@ -99,7 +103,6 @@ router.post("/login", (req, res) => {
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
       req.session.owner = true;
-
       res.json({ user: dbOwnerData, message: "You are now logged in!" });
     });
   });
@@ -118,7 +121,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// PUT /api/owner/1 ****tested
+// PUT /api/owner/1
 router.put("/:id", (req, res) => {
   Owner.update(req.body, {
     individualHooks: true,
@@ -139,7 +142,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE /api/owner/1  *****tested
+// DELETE /api/owner/1 
 router.delete("/:id", (req, res) => {
   Owner.destroy({
     where: {

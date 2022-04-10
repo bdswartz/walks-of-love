@@ -2,7 +2,9 @@ const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 const { Pets } = require('../../models');
 
-/// GET /api/pets   ****tested
+// Route coming into file is https://pacific-depths-79804.herokuapp.com/api/pets
+
+/// GET /api/pets
 router.get('/', (req, res) => {
     // Access our Pets model and run .findAll() method
     Pets.findAll()
@@ -13,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/pets/id   *****tested
+// GET /api/pets/id
 router.get('/:id', (req, res) => {
     Pets.findOne({
         where: {
@@ -33,7 +35,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST /api/Pets  *****tested
+// POST /api/pets
 router.post('/', (req, res) => {
     Pets.create({
         // id: req.body.id,
@@ -52,7 +54,7 @@ router.post('/', (req, res) => {
 // PUT /api/Pets/1
 router.put('/:id', (req, res) => {});
 
-// DELETE /api/Pets/1
+// DELETE /api/Pets/#
 router.delete('/:id', (req, res) => {
   Pets.destroy({
     where: {
