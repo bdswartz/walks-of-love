@@ -1,6 +1,6 @@
-# [Welcome to The Tech Blog](https://hidden-lake-84375.herokuapp.com/)
+# [Welcome to Walks of Love](https://hidden-lake-84375.herokuapp.com/)
 
-#### The Tech Blog a full-stack CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts. It allows tech enthusiasts to post topic of interest and allow others to view and comment on those posts.
+#### The Walks of Love is a full-stack website that matches pet owners with freelance pet care specialists looking for new friends to care about.  It allows pet owners to post opportunities to care for their pets when they are unable to and allows potential pet caregivers to accept those oppotunities.
 
 ---
 
@@ -15,7 +15,7 @@ N/A -
 ---
 
 ## Usage
-A user can browse posts to the site without creating an account but will need to create an account and be logged into the site in order to create new posts or comment on existing ones.
+A user can navigate from the landing page to input a job buy logging in as a pet owner or the user can chose to login as a pet cagergiver and navigate to their dashboard where they can see jobs that have previously accepted or choose to move in .
 
 ---
 
@@ -36,45 +36,25 @@ A user can browse posts to the site without creating an account but will need to
 
 ## User Story
 ### AS A developer who writes about tech
-I WANT a CMS-style blog site
-SO THAT I can publish articles, blog posts, and my thoughts and opinions
+I WANT a website where I can go to post pet care opportunities.
+SO THAT as an owner, I can post opportunities for caregivers to take care on my pet when i am unable.  And as a caregiver I can offer my services by accepting posted opportunities to care for pets.
     
 ### Acceptance Criteria for Minimum Viable Product
 
-GIVEN a CMS-style blog site
-*  WHEN I visit the site for the first time
-    THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
-*  WHEN I click on the homepage option
-    THEN I am taken to the homepage
-*  WHEN I click on any other links in the navigation
-    THEN I am prompted to either sign up or sign in
-*  WHEN I choose to sign up
-    THEN I am prompted to create a username and password
-*  WHEN I click on the sign-up button
-    THEN my user credentials are saved and I am logged into the site
-*  WHEN I revisit the site at a later time and choose to sign in
-    THEN I am prompted to enter my username and password
-*  WHEN I am signed in to the site
-    THEN I see navigation links for the homepage, the dashboard, and the option to log out
-*  WHEN I click on the homepage option in the navigation
-    THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
-*  WHEN I click on an existing blog post
-    THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
-*  WHEN I enter a comment and click on the submit button while signed in
-    THEN the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
-*  WHEN I click on the dashboard option in the navigation
-    THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
-*  WHEN I click on the button to add a new blog post
-    THEN I am prompted to enter both a title and contents for my blog post
-*  WHEN I click on the button to create a new blog post
-    THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
-*  WHEN I click on one of my existing posts in the dashboard
-    THEN I am able to delete or update my post and taken back to an updated dashboard
-*  WHEN I click on the logout option in the navigation
-    THEN I am signed out of the site
-*  WHEN I am idle on the site for more than a set time
-    THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments
-    
+GIVEN a pet care website:
+*  When loading the app, open a high impact landing screen that tells the company story, and has an option to LOGIN/SignUp
+When clicking on Login/Signup link on the homepage to takes you to a Login/Signup screen/modal that allows a user to login/signup with a username and password and chose whether you are a pet owner or walker
+When login or signup complete, it take the owner/walker to their respective dashboard
+When the owner dashboard opens, it displays all open orders for the owner and gives the owner a link to add an order, a link to see closed orders, and a link to manage pets.
+When the owner clicks on the manage pets link, the owners pets and pet details are displayed and buttons to add or delete a pet are displayed.
+When the owner clicks on an open order, the order is opened and the owner can edit or delete that order.
+When the owner clicks on the see closed orders, a page is opened where the owner can see the past orders on their dashboard instead of open/future orders.
+When the owner clicks on the “add order” button, the order form/page opens where they can fill out the details of an order.
+When the walker dashboard opens, it displays all open orders for the walker and gives the walker a link to add (ie accept) a new order and a link to see completed orders.
+When the walker clicks on the “see closed orders” link, a page is opened where the walker can see the past orders on their dashboard instead of open/future orders.
+When the walker clicks on the “add new order” button, all available orders are displayed and a button is provided for each for the walker to accept a job.  When a walker accepts a job, he/she is taken back to their dashboard where that job is now included in the view.
+When the walker clicks on an open order, the order details are opened so that the walker can complete the job and a field is provided to provide feedback to the owner on the order with a button for the walker to “complete” the order.
+ 
 ---
 
 ## Features
