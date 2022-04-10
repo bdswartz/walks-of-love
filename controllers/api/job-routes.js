@@ -1,13 +1,15 @@
 const router = require("express").Router();
 const { Job, Pets, Owner } = require("../../models");
 const withAuth = require("../../utils/auth");
+// require the operator form from Sequelize to use operators in queries
+const { Op } = require("sequelize");
 
-//  route coming into file is  /api/jobs....
+//  route coming into file is  https://pacific-depths-79804.herokuapp.com/api/jobs....
 
-// get all jobs   ***tested
+// get all jobs
 router.get("/", (req, res) => {
   Job.findAll({
-    // order: [['timeframe', 'DESC']],
+    order: [["timeframe", "DESC"]],
     include: [
       {
         model: Pets,
@@ -119,6 +121,7 @@ router.post("/owner", (req, res) => {
 // Get jobs by walker   ****tested
 router.post("/walker", (req, res) => {
   Job.findAll({
+    order: [["timeframe", "DESC"]],
     where: {
       walker_id: req.body.walker_id,
     },
