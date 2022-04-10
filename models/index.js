@@ -1,7 +1,7 @@
 const Owner = require("./owner");
 const Walker = require("./walker");
 const Pets = require("./pets");
-const Job = require("./Job");
+const Job = require("./job");
 
 Owner.hasMany(Pets, {
   foreignKey: "owner_id",
