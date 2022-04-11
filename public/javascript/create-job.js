@@ -33,8 +33,10 @@ async function createPostHandler(event) {
         timeframe,
         location,
         completed: false,
+        // change this to accept the owner ID of who is logged in
         owner_id: 1,
         walker_id: null,
+        // change this to accept the pet ID based off what one was selected
         animal_id: 1,
       }),
       headers: {
