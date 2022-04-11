@@ -9,8 +9,8 @@ let sequelize;
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
-  sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-    host: "localhost",
+  sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, null, {
+    host: "127.0.0.1",
     // username: "root",
     // password: "MyPassword",
     // database: "walks_of_love_db",
