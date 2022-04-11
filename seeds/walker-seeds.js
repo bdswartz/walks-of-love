@@ -29,7 +29,15 @@ const walkerData = [
     email: "davidc453@abc.com",
     password: "password",
   },
+  {
+    id: "SP3KE7T5EH5J21DC9Y3DXNKEGV21EA9X3STF624MF",
+    first_name: "geici",
+    last_name: "Walker",
+    email: "geicic453@abc.com",
+    password: "password",
+  },
 ];
+
 
 const seedWalker = () => Walker.bulkCreate(walkerData);
 
