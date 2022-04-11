@@ -21,7 +21,6 @@ router.get("/", (req, res) => {
     const jobs = dbJobData.map((job) => job.get({ plain: true }));
     res.render("jobsearch", {
       jobs,
-      loggedIn: req.session.loggedIn,
     });
   });
 });

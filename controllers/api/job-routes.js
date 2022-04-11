@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Get one Job by ID    ***tested
+// Get one Job by ID 
 router.get("/:id", (req, res) => {
   Job.findOne({
     where: {
@@ -91,9 +91,10 @@ router.post("/zip", (req, res) => {
     });
 });
 
-// Get jobs by owner  ****tested
+// Get jobs by owner
 router.post("/owner", (req, res) => {
   Job.findAll({
+    order: [["timeframe", "DESC"]],
     where: {
       owner_id: req.body.owner_id,
     },
@@ -153,7 +154,7 @@ router.post("/walker", (req, res) => {
     });
 });
 
-// Create a new job  ****tested
+// Create a new job (ie owner completes job order form)
 router.post("/", (req, res) => {
   Job.create({
     pay: req.body.pay,
@@ -173,19 +174,13 @@ router.post("/", (req, res) => {
     });
 });
 
-// Create a new job
-router.post("/", (req, res) => {
-  Job.create(
+// Update a job with the walker's id to "accept" the job
+router.put("/accept/:id", (req, res) => {
+  // expects { walker_id: 'Walker ID String'} to accept the job
+  // expects { walker_id: null } to remove walker's acceptance 
+  Job.update(
     {
-      pay: req.body.pay,
-      check_in: req.body.check_in,
-      walk: req.body.walk,
-      timeframe: req.body.timeframe,
-      location: req.body.location,
-      completed: req.body.completed,
-      owner_id: req.body.owner_id,
       walker_id: req.body.walker_id,
-      animal_id: req.body.animal_id,
     },
     {
       where: {
@@ -206,7 +201,34 @@ router.post("/", (req, res) => {
     });
 });
 
-//  Delete a job  ***** tested
+// Complete (or reopen) a job
+router.put("/complete/:id", (req, res) => {
+  // expects { completed: true } to complete the job
+  // expects { completed: false } to remove walker's acceptance 
+  Job.update(
+    {
+      completed: req.body.completed,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((dbJobData) => {
+      if (!dbJobData) {
+        res.status(404).json({ message: "No job found with this id" });
+        return;
+      }
+      res.json(dbJobData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+//  Delete a job
 router.delete("/:id", (req, res) => {
   Job.destroy({
     where: {
