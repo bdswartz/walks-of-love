@@ -16,7 +16,6 @@ Walker.init(
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     first_name: {
       type: DataTypes.STRING,
