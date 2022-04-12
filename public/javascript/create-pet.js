@@ -1,5 +1,4 @@
 async function commentFormHandler(event) {
-  // const owner_id = req.session.user_id;
   event.preventDefault();
 
   const pet_name = document

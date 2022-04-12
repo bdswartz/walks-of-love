@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Get one Job by ID 
+// Get one Job by ID
 router.get("/:id", (req, res) => {
   Job.findOne({
     where: {
@@ -156,6 +156,7 @@ router.post("/walker", (req, res) => {
 
 // Create a new job (ie owner completes job order form)
 router.post("/", (req, res) => {
+  const id = req.session.user_id;
   Job.create({
     pay: req.body.pay,
     check_in: req.body.check_in,
@@ -163,7 +164,7 @@ router.post("/", (req, res) => {
     timeframe: req.body.timeframe,
     location: req.body.location,
     completed: req.body.completed,
-    owner_id: req.body.owner_id,
+    owner_id: id,
     walker_id: req.body.walker_id,
     animal_id: req.body.animal_id,
   })
@@ -177,7 +178,7 @@ router.post("/", (req, res) => {
 // Update a job with the walker's id to "accept" the job
 router.put("/accept/:id", (req, res) => {
   // expects { walker_id: 'Walker ID String'} to accept the job
-  // expects { walker_id: null } to remove walker's acceptance 
+  // expects { walker_id: null } to remove walker's acceptance
   Job.update(
     {
       walker_id: req.body.walker_id,
@@ -204,7 +205,7 @@ router.put("/accept/:id", (req, res) => {
 // Complete (or reopen) a job
 router.put("/complete/:id", (req, res) => {
   // expects { completed: true } to complete the job
-  // expects { completed: false } to remove walker's acceptance 
+  // expects { completed: false } to remove walker's acceptance
   Job.update(
     {
       completed: req.body.completed,

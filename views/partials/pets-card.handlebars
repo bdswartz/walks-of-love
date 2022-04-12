@@ -5,7 +5,9 @@
         <h6 class="card-subtitle mb-2 text-muted">{{ this.pet_type }}</h6>
         <p class="card-text">{{ this.description }}</p>
     </div>
-    <button class="btn btn-lg btn-success" type="button" data-toggle="modal" data-target="#exampleModal">New job</button>
+    <button id="new-job-btn" data-value="{{ this.id }}" class="btn btn-lg btn-success new-job-btn" type="button" data-toggle="modal" data-target="#exampleModal">New job</button>
 </div>
 {{/each}}
+
+<script src="/javascript/create-job.js"></script>
 
