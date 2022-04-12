@@ -42,6 +42,7 @@ Walker.init(
     is_walker: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
   },
   {

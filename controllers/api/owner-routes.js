@@ -64,7 +64,13 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // const id = uniqid();
   // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
-  Owner.create(req.body)
+  Owner.create({
+    id: uniqid(),
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    password: req.body.password,
+  })
     .then((dbOwnerData) => {
       req.session.save(() => {
         req.session.user_id = dbOwnerData.id;

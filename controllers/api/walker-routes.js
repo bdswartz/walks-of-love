@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
 const { Walker, Job } = require("../../models");
+const uniqid = require("uniqid");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/walker
 
@@ -57,7 +58,13 @@ router.get("/:id", (req, res) => {
 // POST /api/walker (used to create a walker on signup)
 router.post("/", (req, res) => {
   // expects {id: 'xxxxx' first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxxx', password: 'xxxxx'}
-  Walker.create(req.body)
+  Walker.create({
+    id: uniqid(),
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    password: req.body.password,
+  })
     .then((dbWalkerData) => {
       req.session.save(() => {
         req.session.user_id = dbWalkerData.id;

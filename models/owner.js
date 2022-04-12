@@ -39,11 +39,11 @@ Owner.init(
         len: [4],
       },
     },
-    // is_owner: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   default: true,
-    // },
+    is_owner: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   },
   {
     hooks: {

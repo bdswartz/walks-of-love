@@ -1,5 +1,3 @@
-const req = require("express/lib/request");
-
 async function loginFormHandler(event) {
   event.preventDefault();
   const email = document.querySelector("#emailA").value.trim();
