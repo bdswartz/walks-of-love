@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
+const { v4: uuidv4 } = require('uuid');
 
 class Walker extends Model {
   checkPassword(loginPw) {
@@ -12,7 +13,7 @@ class Walker extends Model {
 Walker.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -39,6 +40,10 @@ Walker.init(
       validate: {
         len: [4],
       },
+    },
+    is_walker: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
   },
   {

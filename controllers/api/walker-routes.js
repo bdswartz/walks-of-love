@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
+const { v4: uuidv4 } = require('uuid');
 const { Walker, Job } = require("../../models");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/walker

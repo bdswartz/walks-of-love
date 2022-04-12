@@ -12,7 +12,7 @@ class Owner extends Model {
 Owner.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -39,6 +39,10 @@ Owner.init(
       validate: {
         len: [4],
       },
+    },
+    is_owner: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
   },
   {
