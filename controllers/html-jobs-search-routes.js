@@ -7,10 +7,10 @@ const { Walker, Job, Pets, Owner } = require("../models");
 router.get("/", (req, res) => {
   console.log(req.session.user_id);
 
-  // const owner = req.session.owner;
-  // const walker = req.session.walker;
-  // console.log("owner:", owner);
-  // console.log("walker:", walker);
+  const owner = req.session.owner;
+  const walker = req.session.walker;
+  console.log("owner:", owner);
+  console.log("walker:", walker);
   Job.findAll({
     // order: [['timeframe', 'DESC']],
     include: [
