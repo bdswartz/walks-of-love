@@ -1,10 +1,16 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
-const { Job, Pets, Owner } = require("../models");
+const { Walker, Job, Pets, Owner } = require("../models");
 
 // this just calls all jobs on page load and stores it in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
+  console.log(req.session.user_id);
+
+  // const owner = req.session.owner;
+  // const walker = req.session.walker;
+  // console.log("owner:", owner);
+  // console.log("walker:", walker);
   Job.findAll({
     // order: [['timeframe', 'DESC']],
     include: [
@@ -21,6 +27,10 @@ router.get("/", (req, res) => {
     const jobs = dbJobData.map((job) => job.get({ plain: true }));
     res.render("jobsearch", {
       jobs,
+      loggedIn: req.session.loggedIn,
+      owner_id: req.session.user_id,
+      owner: req.session.owner,
+      walker: req.session.walker,
     });
   });
 });

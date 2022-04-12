@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // const withAuth = require('../../utils/auth');
-const { Owner, Job, Pets } = require("../../models");
+const { Walker, Owner, Job, Pets } = require("../../models");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
@@ -101,6 +101,8 @@ router.post("/login", (req, res) => {
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
       req.session.owner = true;
+      req.session.walker = false;
+
       res.json({ user: dbOwnerData, message: "You are now logged in!" });
     });
   });

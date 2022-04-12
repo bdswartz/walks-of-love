@@ -64,6 +64,7 @@ router.post("/", (req, res) => {
         req.session.email = dbWalkerData.email;
         req.session.loggedIn = true;
         req.session.walker = true;
+        req.session.owner = false;
 
         res.json(dbWalkerData);
       });
@@ -76,7 +77,6 @@ router.post("/", (req, res) => {
 
 // POST /api/walkers/login
 router.post("/login", (req, res) => {
-
   Walker.findOne({
     where: {
       email: req.body.email,

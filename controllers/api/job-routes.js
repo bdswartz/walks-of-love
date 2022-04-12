@@ -163,9 +163,9 @@ router.post("/", (req, res) => {
     walk: req.body.walk,
     timeframe: req.body.timeframe,
     location: req.body.location,
-    completed: req.body.completed,
+    completed: false,
     owner_id: id,
-    walker_id: req.body.walker_id,
+    walker_id: null,
     animal_id: req.body.animal_id,
   })
     .then((dbJobData) => res.json(dbJobData))

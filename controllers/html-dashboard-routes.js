@@ -6,6 +6,7 @@ const { Job, Pets, Owner } = require("../models");
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
   const id = req.session.user_id;
+  console.log(id);
   Job.findAll({
     // order: [['timeframe', 'DESC']],
     where: {
