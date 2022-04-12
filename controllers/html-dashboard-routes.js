@@ -4,7 +4,7 @@ const withAuth = require("../utils/auth");
 const { Job, Pets, Owner } = require("../models");
 
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
-router.get("/", withAuth, (req, res) => {
+router.get("/", (req, res) => {
   if(req.session.isWalker){
 
   }else {
