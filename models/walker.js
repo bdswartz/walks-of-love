@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require('uuid');
 
 class Walker extends Model {
   checkPassword(loginPw) {
