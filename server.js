@@ -24,20 +24,6 @@ app.set("view engine", "handlebars");
 // connect to npm module connect-session-sequelize and pass through express sessionStore property
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-// set up an Express.js session and connect the session to our Sequelize database
-// const sess = {
-//   secret: process.env.SECRET,
-//   cookie: {
-//     maxAge: 1800000,
-//     // 30 min expiration on the cookie
-//   },
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize,
-//   }),
-// };
-// app.use(session(sess));
 
 // Middleware to parse information for the db
 app.use(express.json());
@@ -49,6 +35,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: process.env.FORCE_SYNC }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
