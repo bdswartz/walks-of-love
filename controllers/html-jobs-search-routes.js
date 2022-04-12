@@ -29,8 +29,8 @@ router.get("/", (req, res) => {
       jobs,
       loggedIn: req.session.loggedIn,
       owner_id: req.session.user_id,
-      owner: req.session.owner,
-      walker: req.session.walker,
+      owner: false,
+      walker: true,
     });
   });
 });
