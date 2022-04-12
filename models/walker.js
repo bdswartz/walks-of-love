@@ -12,10 +12,9 @@ class Walker extends Model {
 Walker.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -39,6 +38,10 @@ Walker.init(
       validate: {
         len: [4],
       },
+    },
+    is_walker: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
   },
   {

@@ -12,10 +12,9 @@ class Owner extends Model {
 Owner.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -40,6 +39,11 @@ Owner.init(
         len: [4],
       },
     },
+    // is_owner: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false,
+    //   default: true,
+    // },
   },
   {
     hooks: {

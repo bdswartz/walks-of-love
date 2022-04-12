@@ -1,6 +1,7 @@
 async function createAccountHandler(event) {
   event.preventDefault();
 
+  const id = Math.floor(Math.random() * (200000000 - 1 + 1)) + 1;
   const first_name = document.querySelector('input[name="first"]').value.trim();
   const last_name = document.querySelector('input[name="last"]').value.trim();
   const email = document.querySelector('input[name="email"]').value.trim();
@@ -8,11 +9,12 @@ async function createAccountHandler(event) {
     .querySelector('input[name="password"]')
     .value.trim();
 
-  if ((email, first_name, last_name, password)) {
+  if ((id, first_name, last_name, email, password)) {
     if (document.getElementById("walk").checked) {
       const response = await fetch("/api/walkers", {
         method: "POST",
         body: JSON.stringify({
+          id,
           first_name,
           last_name,
           email,

@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const uniqid = require("uniqid");
+
 // const withAuth = require('../../utils/auth');
 const { Walker, Owner, Job, Pets } = require("../../models");
 
@@ -60,6 +62,7 @@ router.get("/:id", (req, res) => {
 
 // POST /api/owner (create an owner - used for the signup of new owners)
 router.post("/", (req, res) => {
+  // const id = uniqid();
   // expects {id: {public key from Hiro} first_name: 'xxxx', last_name: 'xxxx', email: 'xxxxx', password: 'xxxxx'}
   Owner.create(req.body)
     .then((dbOwnerData) => {
