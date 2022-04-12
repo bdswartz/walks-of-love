@@ -5,10 +5,11 @@ const { Job, Pets, Owner } = require("../models");
 
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
+  const id = req.session.user_id;
   Job.findAll({
     // order: [['timeframe', 'DESC']],
     where: {
-      owner_id: 1,
+      owner_id: id,
       // completed: false,
     },
     include: [
@@ -32,7 +33,7 @@ router.get("/", (req, res) => {
 
     Pets.findAll({
       where: {
-        owner_id: 1,
+        owner_id: id,
       },
     }).then((dbPetData) => {
       const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
@@ -41,6 +42,8 @@ router.get("/", (req, res) => {
         jobs,
         ownersPets,
         completedJobs,
+        loggedIn: req.session.loggedIn,
+        owner_id: req.session.user_id,
       });
     });
   });

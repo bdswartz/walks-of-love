@@ -1,12 +1,10 @@
 async function commentFormHandler(event) {
+  // const owner_id = req.session.user_id;
   event.preventDefault();
 
   const pet_name = document
     .querySelector('input[name="pet-name"]')
     .value.trim();
-
-  // this owner_id needs to be changed based off of who is logged in
-  const owner_id = 1;
 
   const pet_type = document
     .querySelector('input[name="pet-type"]')
@@ -21,7 +19,6 @@ async function commentFormHandler(event) {
       method: "POST",
       body: JSON.stringify({
         pet_name,
-        owner_id,
         pet_type,
         description,
       }),

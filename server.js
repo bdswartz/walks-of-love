@@ -24,6 +24,22 @@ app.set("view engine", "handlebars");
 // connect to npm module connect-session-sequelize and pass through express sessionStore property
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+app.use(
+  session({
+    name: "sid",
+    resave: false,
+    saveUninitialized: false,
+    secret: "cookiemonsta",
+    store: new SequelizeStore({
+      db: sequelize,
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 2,
+      sameSite: true,
+    },
+  })
+);
+
 // set up an Express.js session and connect the session to our Sequelize database
 // const sess = {
 //   secret: process.env.SECRET,

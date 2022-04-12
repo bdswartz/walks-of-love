@@ -9,22 +9,25 @@
       </div>
 
       <div class="modal-body">
-        <form>
+        <form class="signIn">
           <div class="form-group">
             <label for="inputAccount">Email</label>
-            <input type="text" class="form-control" id="email">
+            <input type="text" class="form-control" id="emailA">
           </div>
           <div class="form-group">
             <label for="inputAccount">Password</label>
-            <input type="password" class="form-control" id="user_password">
+            <input type="password" class="form-control" id="user_passwordA">
           </div>
+      {{!-- <div class="modal-footer"> --}}
+        <button id="loginSubmit" type="submit" class="btn btn-primary" data-dismiss="modal">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      {{!-- </div> --}}
         </form>
       </div>
 
-      <div class="modal-footer">
-        <button id="login" type="button" class="btn btn-primary">Login</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+
     </div>
   </div>
 </div>
+
+<script src="/javascript/login.js"></script>

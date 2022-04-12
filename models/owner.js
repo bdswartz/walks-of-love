@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-const bcrypt = require('bcrypt');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
 class Owner extends Model {
   checkPassword(loginPw) {
@@ -12,33 +12,34 @@ class Owner extends Model {
 Owner.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [4]
-      }
-    }
+        len: [4],
+      },
+    },
   },
   {
     hooks: {
@@ -47,17 +48,20 @@ Owner.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-    // set up beforeUpdate "hook"
+      // set up beforeUpdate "hook"
       async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
         return updatedUserData;
-      }
+      },
     },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'owner'
+    modelName: "owner",
   }
 );
 

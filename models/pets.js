@@ -1,48 +1,46 @@
-const { Model, DataTypes, INTEGER } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes, INTEGER } = require("sequelize");
+const sequelize = require("../config/connection");
 
-class Pets extends Model { }
+class Pets extends Model {}
 
 // define table columns and configuration
 Pets.init(
   {
-    // TABLE COLUMN DEFINITIONS 
+    // TABLE COLUMN DEFINITIONS
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     pet_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     owner_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'owner',
-        key: 'id'
-      }
+        model: "owner",
+        key: "id",
+      },
     },
     pet_type: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'pets'
+    modelName: "pets",
   }
 );
-
 
 module.exports = Pets;

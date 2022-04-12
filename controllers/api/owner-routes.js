@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // const withAuth = require('../../utils/auth');
-const { Owner, Job, Pets } = require('../../models');
+const { Owner, Job, Pets } = require("../../models");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
@@ -18,36 +18,36 @@ router.get("/", (req, res) => {
 });
 
 // GET one owner and associated jobs and pets
-router.get('/:id', (req, res) => {
-    Owner.findOne({
-      attributes: { exclude: ['password'] },
-      include: [
-        {
-          model: Job,
-          attributes: [
-          'id',
-          'pay',
-          'check_in',
-          'walk',
-          'timeframe',
-          'location',
-          'completed',
-          'owner_id',
-          'animal_id'
-          ]
-        },
-        {
-          model: Pets,
-          attributes: ['id', 'pet_name', 'pet_type', 'description'],
-        }
-      ],
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(dbOwnerData => {
+router.get("/:id", (req, res) => {
+  Owner.findOne({
+    attributes: { exclude: ["password"] },
+    include: [
+      {
+        model: Job,
+        attributes: [
+          "id",
+          "pay",
+          "check_in",
+          "walk",
+          "timeframe",
+          "location",
+          "completed",
+          "owner_id",
+          "animal_id",
+        ],
+      },
+      {
+        model: Pets,
+        attributes: ["id", "pet_name", "pet_type", "description"],
+      },
+    ],
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbOwnerData) => {
       if (!dbOwnerData) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbOwnerData);
@@ -79,8 +79,6 @@ router.post("/", (req, res) => {
 
 // POST /api/owner/login
 router.post("/login", (req, res) => {
-  console.log(req.session);
-  
   Owner.findOne({
     where: {
       email: req.body.email,
@@ -142,7 +140,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE /api/owner/1 
+// DELETE /api/owner/1
 router.delete("/:id", (req, res) => {
   Owner.destroy({
     where: {

@@ -15,14 +15,18 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="btn success" href="/logout" id="logout">Logout</a>
+        <a class="btn success" id="logout">Logout</a>
       </li>
     {{else}}
       <li class="nav-item">
-        <a class="btn success" type="button" data-toggle="modal" data-target="#user-info" id="login">Login</a>
+        <a class="btn success" type="button" data-toggle="modal" data-target="#user-info" id="loginNav">Login</a>
       </li>
     {{/if}}
   </ul>
 </nav>
 
 {{> modal/login }}
+
+<script src="/javascript/login.js"></script>
+<script src="/javascript/logout.js"></script>
+

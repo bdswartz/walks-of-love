@@ -3,12 +3,15 @@ const sequelize = require("../config/connection");
 
 // Homepage route
 router.get("/", (req, res) => {
-  console.log("test");
-  res.render("homepage");
-  // res.render("homepage", {
-  //   loggedIn: req.session.loggedIn,
-  //   username: req.session.username,
-  // });
+  // console.log("test");
+  if (req.session.loggedIn) {
+    res.redirect("/dashboard");
+    return;
+  }
+
+  res.render("homepage", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 // This was data from the module that I commented out
