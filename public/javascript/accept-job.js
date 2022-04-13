@@ -8,8 +8,13 @@ async function acceptJobHandler(event) {
       "Content-Type": "application/json",
     },
   });
+
   const walker_id = await res.json();
   console.log(walker_id.walkerId);
+
+  if(walker_id.walkerId ==1){
+    window.alert("a")
+      }
 
   const response = await fetch(`/api/jobs/accept/${id}`, {
     method: "PUT",
@@ -20,9 +25,14 @@ async function acceptJobHandler(event) {
       "Content-Type": "application/json",
     },
   });
+
+
   if (response.ok) {
     document.location.reload();
-  } else {
+  } 
+
+ 
+  else {
     alert(response.statusText);
   }
 }

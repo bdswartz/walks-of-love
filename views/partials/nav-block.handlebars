@@ -7,9 +7,11 @@
     {{#if loggedIn}}
       <li class="nav-item">
         <div class="dropdown">
-          <button class="btn success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+          <button class="btn success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+             {{!-- {{#if isWalker}} --}}
             <a href="/jobs" class="dropdown-item" type="button">Job Search</a>
+              {{!-- {{/if}} --}}
             <a href="/dashboard" class="dropdown-item" type="button">Dashboard</a>
           </div>
         </div>
@@ -20,6 +22,10 @@
     {{else}}
       <li class="nav-item">
         <a class="btn success" type="button" data-toggle="modal" data-target="#user-info" id="loginNav">Login</a>
+      </li>
+      <li id="job" class="nav-item">
+           <a href="/jobs" id="job"class="btn success" type="button">Job Search</a>
+        
       </li>
     {{/if}}
   </ul>
