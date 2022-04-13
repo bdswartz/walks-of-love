@@ -58,7 +58,7 @@ When owner clicks on add a job, a form is displayed and owner needs to input pay
 When the owner clicks on the manage pets link, the owner's pets and pet details are displayed and buttons to add or delete a pet are displayed.
 .
 
-When the walker dashboard opens, it displays all open jobs 
+* When the walker dashboard opens, it displays all open jobs 
 When the walker clicks on the “see closed orders” link, a page is opened where the walker can see the past orders on their dashboard instead of open/future orders.
 When a walker accepts a job, he/she is taken back to their dashboard where that job is now included in the view.
 When the walker clicks on an open order, the order details are opened so that the walker can complete the job and a field is provided to provide feedback to the owner on the order with a button for the walker to “complete” the order.
