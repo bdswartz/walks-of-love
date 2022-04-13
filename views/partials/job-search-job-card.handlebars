@@ -1,20 +1,20 @@
 <div class="jobs">
-{{#each jobs}}
+{{#each this}}
 <div class="card mb-2">
     <div class="card-body">
         <h4 class="card-title">{{ owner.first_name }} {{ owner.last_name }}</h5>
         <h5 class="card-text">Pet: {{ pet.pet_name }}</h5>
         <h5 class="card-subtitle">Visit: {{#if walk }}Walk{{/if}}{{#if check_in }}Check-In{{/if}}</h6>
-        <h5 class="card-text">Pay: {{ jobs.pay }}</h5>
-        <h6 class="card-text text-muted">Time: {{ jobs.timeframe }}</h6>
-        <h6 class="card-text text-muted">Location: {{ jobs.location }}</h6>
+        <h5 class="card-text">Pay: {{ this.pay }}</h5>
+        <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
+        <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
         {{!-- {{#if owner}}
         {{#unless completed}}
         <button id="delete-job" class="float-right btn success" type="button">Delete</button>
         {{/unless}}
         {{/if}} --}}
         {{#if ../isWalker}}
-        <button id="accept-job" class="float-right btn success" type="button">Accept</button>
+<button id="accept-job" data-id="{{this.id}}" class="accept-job-class float-right btn success" type="button">Accept</button>
         {{/if}}
     </div>
 </div>

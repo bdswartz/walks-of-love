@@ -18,6 +18,17 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/walkerid", (req, res) => {
+  console.log(req.session.loggedIn);
+  // Access our Walker model and run .findAll() method)
+  if (req.session.loggedIn) {
+    console.log(req.session.user_id);
+    return res.json({ walkerId: req.session.user_id });
+  } else {
+    res.status(404).end();
+  }
+});
+
 // GET one walker
 router.get("/:id", (req, res) => {
   Walker.findOne({
