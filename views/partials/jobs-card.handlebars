@@ -8,11 +8,11 @@
         <h5 class="card-text">Pay: {{ this.pay }}</h5>
         <h6 class="card-text text-muted">Time: {{ this.timeframe }}</h6>
         <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
-        {{!-- {{#if owner}}
-        {{#unless completed}}
-        <button id="delete-job" class="float-right btn success" type="button">Delete</button>
-        {{/unless}}
-        {{/if}} --}}
+        {{#if ../isWalker}}
+        {{!-- {{#unless completed}} --}}
+        <button id="delete-job" class="float-right btn success" type="button">Complete</button>
+        {{!-- {{/unless}} --}}
+        {{/if}}
     </div>
 </div>
 {{/each}}
