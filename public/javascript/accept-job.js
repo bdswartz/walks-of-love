@@ -1,6 +1,8 @@
 async function acceptJobHandler(event) {
   event.preventDefault();
+  
   const id = event.target.getAttribute("data-id");
+  
   const res = await fetch("/api/walkers/walkerid", {
     method: "GET",
     headers: {
