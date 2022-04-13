@@ -45,6 +45,8 @@ router.get("/", (req, res) => {
         completedJobs,
         loggedIn: req.session.loggedIn,
         owner_id: req.session.user_id,
+        isWalker: req.session.isWalker,
+        isOwner: req.session.isOwner,
       });
     });
   });

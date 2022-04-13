@@ -7,10 +7,13 @@ const { Walker, Job, Pets, Owner } = require("../models");
 router.get("/", (req, res) => {
   console.log("test");
   console.log(req.session);
-  console.log("test");
+  console.log("testing22222");
 
   Job.findAll({
     // order: [['timeframe', 'DESC']],
+    where: {
+      walker_id: null,
+    },
     include: [
       {
         model: Pets,
@@ -27,7 +30,7 @@ router.get("/", (req, res) => {
       jobs,
       loggedIn: req.session.loggedIn,
       owner_id: req.session.user_id,
-      walker: req.session.walker,
+      isWalker: req.session.isWalker,
     });
   });
 });

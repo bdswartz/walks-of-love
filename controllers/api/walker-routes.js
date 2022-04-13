@@ -70,8 +70,8 @@ router.post("/", (req, res) => {
         req.session.user_id = dbWalkerData.id;
         req.session.email = dbWalkerData.email;
         req.session.loggedIn = true;
-        req.session.walker = true;
-        req.session.owner = false;
+        req.session.isWalker = true;
+        req.session.isOwner = false;
 
         res.json(dbWalkerData);
       });
@@ -105,8 +105,8 @@ router.post("/login", (req, res) => {
       req.session.user_id = dbWalkerData.id;
       req.session.email = dbWalkerData.email;
       req.session.loggedIn = true;
-      req.session.walker = true;
-      req.session.owner = false;
+      req.session.isWalker = true;
+      req.session.isOwner = false;
 
       res.json({ user: dbWalkerData, message: "You are now logged in!" });
     });

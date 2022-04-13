@@ -109,8 +109,8 @@ router.post("/login", (req, res) => {
       req.session.user_id = dbOwnerData.id;
       req.session.email = dbOwnerData.email;
       req.session.loggedIn = true;
-      req.session.owner = true;
-      req.session.walker = false;
+      req.session.isOwner = true;
+      req.session.isWalker = false;
 
       res.json({ user: dbOwnerData, message: "You are now logged in!" });
     });
