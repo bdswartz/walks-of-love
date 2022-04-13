@@ -10,7 +10,12 @@
         <h6 class="card-text text-muted">Location: {{ this.location }}</h6>
         {{#if ../isWalker}}
         {{!-- {{#unless completed}} --}}
-        <button id="delete-job" class="float-right btn success" type="button">Complete</button>
+        <button id="complete-job" class="float-right btn success" type="button">Complete</button>
+        {{!-- {{/unless}} --}}
+        {{/if}}
+        {{#if ../isOwner}}
+        {{!-- {{#unless completed}} --}}
+        <button id="delete-job" class="float-right btn success" type="button">Delete</button>
         {{!-- {{/unless}} --}}
         {{/if}}
     </div>
