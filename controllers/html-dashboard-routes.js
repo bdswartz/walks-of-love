@@ -6,50 +6,102 @@ const { Job, Pets, Owner } = require("../models");
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
   const id = req.session.user_id;
-  console.log(id);
-  Job.findAll({
-    // order: [['timeframe', 'DESC']],
-    where: {
-      owner_id: id,
-      // completed: false,
-    },
-    include: [
-      {
-        model: Pets,
-        attributes: ["id", "pet_name", "pet_type", "description", "owner_id"],
-      },
-      {
-        model: Owner,
-        attributes: ["first_name", "last_name"],
-      },
-    ],
-  }).then((dbJobData) => {
-    const jobsClean = dbJobData.map((job) => job.get({ plain: true }));
-    let jobs = jobsClean.filter((job) => job.completed == false);
 
-    const completedJobsClean = dbJobData.map((job) => job.get({ plain: true }));
-    let completedJobs = completedJobsClean.filter(
-      (job) => job.completed == true
-    );
-
-    Pets.findAll({
+  if (req.session.isWalker) {
+    Job.findAll({
+      // order: [['timeframe', 'DESC']],
       where: {
-        owner_id: id,
+        walker_id: id,
+        completed: false,
       },
-    }).then((dbPetData) => {
-      const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
-      // console.log(ownersPets);
-      res.render("dashboard", {
-        jobs,
-        ownersPets,
-        completedJobs,
-        loggedIn: req.session.loggedIn,
-        owner_id: req.session.user_id,
-        isWalker: req.session.isWalker,
-        isOwner: req.session.isOwner,
+      include: [
+        {
+          model: Pets,
+          attributes: ["id", "pet_name", "pet_type", "description", "owner_id"],
+        },
+        {
+          model: Owner,
+          attributes: ["first_name", "last_name"],
+        },
+      ],
+    }).then((dbJobData) => {
+      const jobsClean = dbJobData.map((job) => job.get({ plain: true }));
+      let jobs = jobsClean.filter((job) => job.completed == false);
+
+      const completedJobsClean = dbJobData.map((job) =>
+        job.get({ plain: true })
+      );
+      let completedJobs = completedJobsClean.filter(
+        (job) => job.completed == true
+      );
+
+      Pets.findAll({
+        where: {
+          owner_id: id,
+        },
+      }).then((dbPetData) => {
+        const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
+        // console.log(ownersPets);
+        res.render("dashboard", {
+          jobs,
+          ownersPets,
+          completedJobs,
+          loggedIn: req.session.loggedIn,
+          owner_id: req.session.user_id,
+          isWalker: req.session.isWalker,
+          isOwner: req.session.isOwner,
+        });
       });
     });
-  });
+  }
+
+  if (req.session.isOwner) {
+    Job.findAll({
+      // order: [['timeframe', 'DESC']],
+      where: {
+        owner_id: id,
+        // completed: false,
+      },
+      include: [
+        {
+          model: Pets,
+          attributes: ["id", "pet_name", "pet_type", "description", "owner_id"],
+        },
+        {
+          model: Owner,
+          attributes: ["first_name", "last_name"],
+        },
+      ],
+    }).then((dbJobData) => {
+      const jobsClean = dbJobData.map((job) => job.get({ plain: true }));
+      let jobs = jobsClean.filter((job) => job.completed == false);
+
+      const completedJobsClean = dbJobData.map((job) =>
+        job.get({ plain: true })
+      );
+      let completedJobs = completedJobsClean.filter(
+        (job) => job.completed == true
+      );
+
+      Pets.findAll({
+        where: {
+          owner_id: id,
+        },
+      }).then((dbPetData) => {
+        const ownersPets = dbPetData.map((pets) => pets.get({ plain: true }));
+        // console.log(ownersPets);
+        res.render("dashboard", {
+          jobs,
+          ownersPets,
+          completedJobs,
+          loggedIn: req.session.loggedIn,
+          owner_id: req.session.user_id,
+          isWalker: req.session.isWalker,
+          isOwner: req.session.isOwner,
+        });
+      });
+    });
+  }
 });
 
 // I did this findall to test stuff for the walker page in handlebars
