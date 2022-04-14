@@ -1,5 +1,6 @@
 <div class="jobs">
 {{#each this}}
+{{#if this.id}}
 <div class="card mb-2">
     <div class="card-body">
         <h4 class="card-title">{{ owner.first_name }} {{ owner.last_name }}</h5>
@@ -20,6 +21,7 @@
         {{/if}}
     </div>
 </div>
+{{/if}}
 {{/each}}
 </div>
 

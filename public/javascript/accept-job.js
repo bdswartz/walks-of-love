@@ -8,13 +8,13 @@ async function acceptJobHandler(event) {
       "Content-Type": "application/json",
     },
   });
-  const walker_id = await res.json();
-  console.log(walker_id.walkerId);
+  const { walkerId } = await res.json();
+  console.log(walkerId);
 
   const response = await fetch(`/api/jobs/accept/${id}`, {
     method: "PUT",
     body: JSON.stringify({
-      walker_id: walker_id.walkerId,
+      walker_id: walkerId,
     }),
     headers: {
       "Content-Type": "application/json",
