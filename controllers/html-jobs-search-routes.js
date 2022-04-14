@@ -5,10 +5,6 @@ const { Walker, Job, Pets, Owner } = require("../models");
 
 // this just calls all jobs on page load and stores it in the jobs variable to use in handlebars
 router.get("/", (req, res) => {
-  console.log("test");
-  console.log(req.session);
-  console.log("testing22222");
-
   Job.findAll({
     // order: [['timeframe', 'DESC']],
     where: {
