@@ -4,7 +4,7 @@ const withAuth = require("../utils/auth");
 const { Job, Pets, Owner } = require("../models");
 
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
   const id = req.session.user_id;
 
   if (req.session.isWalker) {
@@ -101,33 +101,6 @@ router.get("/", (req, res) => {
       });
     });
   }
-});
-
-// I did this findall to test stuff for the walker page in handlebars
-// added a /walker to test out the walker handlbars
-router.get("/walker", (req, res) => {
-  Job.findAll({
-    // order: [['timeframe', 'DESC']],
-    where: {
-      walker_id: 1,
-    },
-    include: [
-      {
-        model: Pets,
-        attributes: ["pet_name", "pet_type", "description", "owner_id"],
-      },
-      {
-        model: Owner,
-        attributes: ["first_name", "last_name"],
-      },
-    ],
-  }).then((dbJobData) => {
-    const jobs = dbJobData.map((job) => job.get({ plain: true }));
-    res.render("walker-dashboard", {
-      jobs,
-      loggedIn: req.session.loggedIn,
-    });
-  });
 });
 
 // Path to edit page where user can edit or delete a post

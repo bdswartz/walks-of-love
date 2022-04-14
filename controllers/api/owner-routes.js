@@ -2,7 +2,7 @@ const router = require("express").Router();
 const uniqid = require("uniqid");
 
 // const withAuth = require('../../utils/auth');
-const { Walker, Owner, Job, Pets } = require("../../models");
+const { Owner, Job, Pets } = require("../../models");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
