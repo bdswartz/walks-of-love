@@ -12,7 +12,6 @@ router.get("/", (req, res) => {
       // order: [['timeframe', 'DESC']],
       where: {
         walker_id: id,
-        completed: false,
       },
       include: [
         {
