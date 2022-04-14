@@ -47,7 +47,7 @@ router.get("/", (req, res) => {
           ownersPets,
           completedJobs,
           loggedIn: req.session.loggedIn,
-          owner_id: req.session.user_id,
+          walker_id: req.session.user_id,
           isWalker: req.session.isWalker,
           isOwner: req.session.isOwner,
         });
