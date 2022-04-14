@@ -16,7 +16,7 @@
         {{/if}}
         {{#if ../isOwner}}
         {{!-- {{#unless completed}} --}}
-        <button id="delete-job" class="float-right btn success delete-job-class" type="button">Delete</button>
+        <button id="delete-job" data-id="{{this.id}}" class="float-right btn success delete-job-class" type="button">Delete</button>
         {{!-- {{/unless}} --}}
         {{/if}}
     </div>
