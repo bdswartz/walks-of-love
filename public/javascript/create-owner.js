@@ -7,7 +7,6 @@ async function createAccountHandler(event) {
   const password = document
     .querySelector('input[name="password"]')
     .value.trim();
-  // const is_owner = true;
 
   if ((first_name, last_name, email, password)) {
     if (document.getElementById("own").checked) {

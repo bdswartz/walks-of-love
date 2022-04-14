@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const withAuth = require("../utils/auth");
-const { Job, Pets, Owner } = require("../models");
+const { Walker, Owner, Job, Pets } = require("../models");
 
 // gets all the jobs by owner ID on page load and stores them in the jobs variable to use in handlebars
-router.get("/", withAuth, (req, res) => {
+router.get("/", (req, res) => {
   const id = req.session.user_id;
+  console.log(req.session);
 
   if (req.session.isWalker) {
     Job.findAll({

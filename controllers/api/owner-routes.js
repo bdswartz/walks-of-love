@@ -2,7 +2,7 @@ const router = require("express").Router();
 const uniqid = require("uniqid");
 
 // const withAuth = require('../../utils/auth');
-const { Owner, Job, Pets } = require("../../models");
+const { Walker, Owner, Job, Pets } = require("../../models");
 
 //  route coming into file is https://pacific-depths-79804.herokuapp.com/api/owner
 
@@ -76,7 +76,8 @@ router.post("/", (req, res) => {
         req.session.user_id = dbOwnerData.id;
         req.session.email = dbOwnerData.email;
         req.session.loggedIn = true;
-        req.session.owner = true;
+        req.session.isOwner = true;
+        req.session.isWalker = false;
         res.json(dbOwnerData);
       });
     })
